@@ -1,11 +1,7 @@
-# Gestão de Resíduos
-A waste management CRUD made in Django. Put into production using fly.io.
+# Gestão Ambiental
+A enviromental management CRUD made in Django.
 
 # Set up para desenvolvimento:
-## Instalar depenências:
-`pip install -r requirements-dev.txt`
-`pip install -r requirements.txt`
-
 ## Criar arquivo `.env`
 Nesse projeto estamos usando o pacote `environ` para administrar as variáveis de ambiente requeridas pelo projeto. Assim, na pasta raiz do projeto devemos criar um arquivo `.env` que contem as variáveis de ambiente usadas pelo sistema:
   - `SECRET_KEY`: Uma chave secreta gerada pelo Django para proteção de formuários e cookies
@@ -23,40 +19,6 @@ Nesse projeto estamos usando o pacote `environ` para administrar as variáveis d
       ```
       - Cole o output desse comando no arquivo `.env`
   - Para setar o debug como True, caso em esteja em um ambiente de desenvolvimento, abra o `.env` adicione `DEBUG=True`.
-
-## Rodando servidor de desenvolvimento
-`python manage.py runserver`
-
-# Estrutura
-```
-.
-├── _dev
-├── apps
-│   ├── classe
-│   ├── destinacao
-│   ├── entrada
-│   ├── fornecedor
-│   ├── home
-│   ├── localidade
-│   └── saida
-├── core
-│   ├── scss
-│   └── static
-├── docs
-├── notebooks
-├── staticfiles
-├── templates
-│   ├── classe
-│   ├── destinacao
-│   ├── entrada
-│   ├── fornecedor
-│   ├── home
-│   ├── localidade
-│   ├── partials
-│   └── saida
-└── templatetags
-
-```
 
 # Frontend Theme:
 - https://demo.themesberg.com/volt/pages/dashboard/dashboard.html
