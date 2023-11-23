@@ -7,7 +7,7 @@ from apps.saida.models import Saida
 class SaidaForm(forms.ModelForm):
     id_fornecedor = forms.ModelChoiceField(
         label="Fornecedor",
-        queryset=Fornecedor.objects.filter(tp_fornecedor__exact="Resíduos"),
+        queryset=Fornecedor.objects.all(),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
@@ -42,7 +42,7 @@ class SaidaForm(forms.ModelForm):
 
         widgets = {
             "data": forms.DateInput(
-                format=("%Y-%m-%d"),
+                format="%Y-%m-%d",
                 attrs={
                     "class": "form-control",
                     "type": "date",

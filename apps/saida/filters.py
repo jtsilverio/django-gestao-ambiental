@@ -24,7 +24,7 @@ class SaidaFilter(django_filters.FilterSet):
     )
     id_fornecedor = django_filters.ModelChoiceFilter(
         label="Fornecedor",
-        queryset=Fornecedor.objects.filter(tp_fornecedor__exact="Resíduos"),
+        queryset=Fornecedor.objects.all(),
         widget=Select(attrs={"class": "form-select"}),
     )
 
