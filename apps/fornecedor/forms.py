@@ -1,9 +1,7 @@
 from django.forms import (
     CheckboxSelectMultiple,
-    ChoiceField,
     ModelForm,
     ModelMultipleChoiceField,
-    Select,
     TextInput,
 )
 
@@ -15,9 +13,7 @@ class FornecedorForm(ModelForm):
     destinacao = ModelMultipleChoiceField(
         label="Destinação",
         queryset=Destinacao.objects.all(),
-        widget=CheckboxSelectMultiple(
-            attrs={"class": "form-check-input mb-0"}
-        ),
+        widget=CheckboxSelectMultiple(attrs={"class": "form-check-input mb-0"}),
         required=False,
     )
 

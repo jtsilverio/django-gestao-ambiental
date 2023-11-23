@@ -19,14 +19,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pre-commit",
-    "pre-commit-hooks",
-    "docformatter",
-    "ruff",
-    "djlint",
-    "pylint",
-]
+dev = ["pre-commit", "pre-commit-hooks", "docformatter", "ruff", "djlint"]
 
 [tool.setuptools.dynamic]
 version = { attr = "version.__version__" }

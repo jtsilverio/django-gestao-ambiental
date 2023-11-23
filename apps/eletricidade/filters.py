@@ -1,8 +1,7 @@
 from django.forms import DateInput, Select
-from django_filters import ChoiceFilter, DateFilter, FilterSet, ModelChoiceFilter
+from django_filters import DateFilter, FilterSet, ModelChoiceFilter
 
 from apps.cluster.models import Cluster
-from apps.eletricidade.models import Eletricidade
 
 
 class EletricidadeFilter(FilterSet):
