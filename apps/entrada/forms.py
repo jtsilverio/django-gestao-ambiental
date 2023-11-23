@@ -1,4 +1,4 @@
-from django.forms import DateInput, ModelChoiceField, ModelForm, NumberInput, Select
+from django.forms import DateInput, ModelForm, NumberInput, Select
 
 from apps.entrada.models import Entrada
 
