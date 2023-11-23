@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django_gestao_ambiental"
+description = "Django Gestao Ambiental"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dynamic = ["version"]
+dependencies = [
+    "Django<=4.2",
+    "django-filter",
+    "django-environ",
+    "gunicorn",
+    "plotly",
+    "pip-tools",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "pre-commit-hooks",
+    "docformatter",
+    "ruff",
+    "djlint",
+    "pylint",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "version.__version__" }
+
+[tool.setuptools]
+py-modules = []

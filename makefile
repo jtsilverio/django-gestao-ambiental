@@ -1,11 +1,17 @@
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PYTHON_INTERPRETER = python
+PYTHON_INTERPRETER = python3
 
 # Test if python is installed
 ifeq (,$(shell $(PYTHON_INTERPRETER) --version))
 $(error "Python is not installed!")
 endif
 
+.PHONY: clean
+clean:
+	@find . -type f -name "*.py[co]" -delete
+	@find . -type d -name "__pycache__" -delete
+	@find . -type d -name ".tox" -exec rm -r "{}" +
+	@find . -type d -name ".pytest_cache" -exec rm -r "{}" +
 
 .PHONY: clean_migrations
 clean_migrations:
@@ -16,26 +22,33 @@ clean_migrations:
 install-pip-tools:
 	$(PYTHON_INTERPRETER) -m pip install pip-tools
 
+install-build:
+	$(PYTHON_INTERPRETER) -m pip install build
 
-pip-compile: install-pip-tools
-	pip-compile --no-emit-index-url requirements.in
-	pip-compile --no-emit-index-url requirements-dev.in
+requirements: install-pip-tools install-build
+	pip-compile --no-emit-index-url \
+				--generate-hashes \
+				--output-file requirements.txt \
+				--strip-extras \
+				pyproject.toml
 
+	echo "--constraint $(PROJECT_DIR)/requirements.txt" | \
+	pip-compile \
+		--generate-hashes \
+		--output-file requirements-dev.txt \
+		--extra dev \
+		pyproject.toml
 
-requirements: pip-compile
+install_dependencies: requirements
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-
-## Synchronize the Python Dependencies & Virtual Env
-sync-env: pip-compile
-	pip-sync requirements.txt requirements-dev.txt
 
 scss:
 	sass core/scss/volt.scss core/static/css/volt.css
 
 black:
-	black . --line-length 79 --exclude venv
+	black . --line-length 88 --exclude .venv venv
 
 # generate a new django secret key and copy it to .env file in the form SECRET_KEY=...
 django-secret-key:
