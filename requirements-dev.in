@@ -1,8 +1,0 @@
--c requirements.txt
-pre-commit
-pre-commit-hooks
-docformatter
-isort
-black
-pip-tools
-djlint
