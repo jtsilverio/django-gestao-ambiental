@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ClasseConfig(AppConfig):
+class TipoResiduosConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.classe"
+    name = "apps.tipo_residuos"

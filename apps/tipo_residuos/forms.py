@@ -1,11 +1,11 @@
 from django.forms import ModelForm, TextInput
 
-from apps.classe.models import Classe
+from apps.tipo_residuos.models import TipoResiduos
 
 
-class ClasseForm(ModelForm):
+class TipoResiduosForm(ModelForm):
     class Meta:
-        model = Classe
+        model = TipoResiduos
 
         fields = [
             "nome",
@@ -19,7 +19,7 @@ class ClasseForm(ModelForm):
             "nome": TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Nome da Classe",
+                    "placeholder": "Nome do Tipo de Resíduo",
                 },
             )
         }

@@ -10,14 +10,14 @@ class EntradaForm(ModelForm):
         fields = [
             "data",
             "id_cluster",
-            "id_classe",
+            "id_tp_residuos",
             "peso",
         ]
 
         labels = {
             "data": "Data de Entrada",
             "id_cluster": "Cluster",
-            "id_classe": "Classe",
+            "id_tp_residuos": "Tipo de Resíduo",
             "peso": "Peso",
         }
 
@@ -32,8 +32,8 @@ class EntradaForm(ModelForm):
             "id_cluster": Select(
                 attrs={"class": "form-select", "placeholder": "Localidade"}
             ),
-            "id_classe": Select(
-                attrs={"class": "form-select", "placeholder": "Classe"}
+            "id_tp_residuos": Select(
+                attrs={"class": "form-select", "placeholder": "Tipo Resíduo"}
             ),
             "peso": NumberInput(
                 attrs={"class": "form-control", "placeholder": "Localidade"},

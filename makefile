@@ -17,7 +17,11 @@ clean:
 clean_migrations:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -not -path "./.venv/*" -not -path "./venv/*" -not -path "*/home/migrations/0001_create_database_views.py" -delete
 	find . -path "*/migrations/*.pyc" -not -path "./.venv/*" -not -path "./venv/*" -not -path "*/home/migrations/0001_create_database_views.pyc" -delete
-	rm db.sqlite3
+	-rm db.sqlite3
+
+migrations: clean_migrations
+	$(PYTHON_INTERPRETER) manage.py makemigrations
+	$(PYTHON_INTERPRETER) manage.py migrate
 
 install-pip-tools:
 	$(PYTHON_INTERPRETER) -m pip install pip-tools

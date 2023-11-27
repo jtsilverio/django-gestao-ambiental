@@ -10,6 +10,11 @@ class Eletricidade(models.Model):
         models.DO_NOTHING,
         db_column="id_cluster",
     )
+    id_unidade_consumo = models.ForeignKey(
+        "unidade_consumo.UnidadeConsumo",
+        models.DO_NOTHING,
+        db_column="id_unidade_consumo",
+    )
     data = models.DateField(null=False, blank=False)
     consumo = models.DecimalField(
         max_digits=10,

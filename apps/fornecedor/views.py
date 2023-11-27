@@ -57,4 +57,4 @@ def fornecedor_delete(request, pk):
         entry.delete()
         messages.warning(request, "Fornecedor excluído")
 
-    return redirect("classe")
+    return redirect("fornecedor")

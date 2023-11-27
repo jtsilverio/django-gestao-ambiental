@@ -17,18 +17,6 @@ MENU_SIDEBAR = [
                 "name": "Saída",
                 "url": "saida",
             },
-            {
-                "name": "Fornecedor",
-                "url": "fornecedor",
-            },
-            {
-                "name": "Classe",
-                "url": "classe",
-            },
-            {
-                "name": "Destinação",
-                "url": "destinacao",
-            },
         ],
     },
     {
@@ -46,21 +34,28 @@ MENU_SIDEBAR = [
         "url": "combustivel:index",
         "icon": "bi bi-fuel-pump-fill",
     },
+    {"name": "div"},
     {
-        "name": "Cluster",
+        "name": "Clusters",
         "url": "cluster:index",
         "icon": "bi bi-globe-americas",
     },
-    {"name": "div"},
+    {"name": "Tipo Resíduos", "url": "tipo_residuos:index", "icon": "bi bi-trash-fill"},
+    {"name": "Destinação Resíduos", "url": "destinacao", "icon": "bi bi-recycle"},
     {
-        "name": "Tipo de Combustível",
+        "name": "Tipos Combustível",
         "url": "tipo_combustivel:index",
-        "icon": "bi bi-tags-fill",
+        "icon": "bi bi-fuel-pump-fill",
     },
     {
-        "name": "Unidade de Consumo",
+        "name": "Unidades Consumo",
         "url": "unidade_consumo:index",
-        "icon": "bi bi-house-fill",
+        "icon": "bi bi-building-fill-gear",
+    },
+    {
+        "name": "Fornecedores",
+        "url": "fornecedor",
+        "icon": "bi bi-shop",
     },
     {"name": "div"},
     {
