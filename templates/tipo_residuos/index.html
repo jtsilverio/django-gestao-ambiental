@@ -6,6 +6,7 @@
         <thead class="thead-light">
             <tr>
                 <th class="align-middle border-0 rounded-start">Tipo Resíduos </th>
+                <th class="align-middle border-0">Classe</th>
                 <th class="align-middle border-0 rounded-end"></th>
             </tr>
         </thead>
@@ -13,6 +14,8 @@
             {% for entry in object_list %}
             <tr class="align-middle">
                 <td>{{ entry.nome }}</td>
+                <td>{{ entry.classe }}</td>
+
                 <td>
                     <div class="d-flex justify-content-end me-3">
                         <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">

@@ -5,6 +5,7 @@ from apps.cluster.models import Cluster
 
 class Eletricidade(models.Model):
     id = models.AutoField(primary_key=True)
+    data = models.DateField(null=False, blank=False)
     id_cluster = models.ForeignKey(
         Cluster,
         models.DO_NOTHING,
@@ -15,7 +16,6 @@ class Eletricidade(models.Model):
         models.DO_NOTHING,
         db_column="id_unidade_consumo",
     )
-    data = models.DateField(null=False, blank=False)
     consumo = models.DecimalField(
         max_digits=10,
         decimal_places=2,

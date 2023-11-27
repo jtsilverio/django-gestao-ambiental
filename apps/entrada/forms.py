@@ -1,9 +1,21 @@
-from django.forms import DateInput, ModelForm, NumberInput, Select
+from django.forms import CharField, DateInput, ModelForm, NumberInput, Select, TextInput
 
 from apps.entrada.models import Entrada
 
 
 class EntradaForm(ModelForm):
+    classe_residuo = CharField(
+        required=False,
+        label="Classe",
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "",
+                "disabled": "disabled",
+            }
+        ),
+    )
+
     class Meta:
         model = Entrada
 
@@ -11,6 +23,7 @@ class EntradaForm(ModelForm):
             "data",
             "id_cluster",
             "id_tp_residuos",
+            "classe_residuo",
             "peso",
         ]
 

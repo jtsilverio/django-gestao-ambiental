@@ -12,6 +12,7 @@ class Entrada(models.Model):
         models.DO_NOTHING,
         db_column="id_tp_residuos",
     )
+
     id_cluster = models.ForeignKey(
         Cluster,
         models.DO_NOTHING,

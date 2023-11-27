@@ -1,7 +1,7 @@
 from django.db import models
 
 from apps.cluster.models import Cluster
-from apps.fornecedor.models import Destinacao, Fornecedor
+from apps.fornecedor.models import Destinacao
 from apps.tipo_residuos.models import TipoResiduos
 
 
@@ -12,9 +12,6 @@ class Saida(models.Model):
         TipoResiduos, models.DO_NOTHING, db_column="id_tp_residuos"
     )
     id_cluster = models.ForeignKey(Cluster, models.DO_NOTHING, db_column="id_cluster")
-    id_fornecedor = models.ForeignKey(
-        Fornecedor, models.DO_NOTHING, db_column="id_fornecedor"
-    )
     id_destinacao = models.ForeignKey(
         Destinacao, models.DO_NOTHING, db_column="id_destinacao"
     )
