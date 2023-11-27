@@ -17,16 +17,16 @@ class Migration(migrations.Migration):
                 strftime('%Y', data) AS ano,
                 strftime('%m', data) AS mes,
                 l.nome  AS cluster,
-                c.nome  AS classe,
+                tp.nome  AS tp_residuos,
                 peso AS peso,
                 0 AS receita,
                 0 AS custo
             FROM entrada e
-            JOIN cluster l 
-                ON e.id_cluster = l.id 
-            JOIN classe c 
-                ON e.id_classe  = c.id_classe
-            GROUP BY ano, mes, cluster, classe
+            JOIN cluster l
+                ON e.id_cluster = l.id
+            JOIN tipo_residuos tp
+                ON e.id_tp_residuos  = tp.id
+            GROUP BY ano, mes, cluster, tp_residuos
 
             UNION ALL
 
@@ -35,16 +35,16 @@ class Migration(migrations.Migration):
                 strftime('%Y', data) AS ano,
                 strftime('%m', data) AS mes,
                 l.nome  AS cluster,
-                c.nome  AS classe,
+                tp.nome  AS tp_residuos,
                 peso AS peso,
                 receita AS receita,
                 custo AS custo
             FROM saida s
-            JOIN cluster l 
-                ON s.id_cluster = l.id 
-            JOIN classe c 
-                ON s.id_classe  = c.id_classe
-            GROUP BY ano, mes, cluster, classe
+            JOIN cluster l
+                ON s.id_cluster = l.id
+            JOIN tipo_residuos tp
+                ON s.id_tp_residuos  = tp.id
+            GROUP BY ano, mes, cluster, tp_residuos
             )
             """,
             reverse_sql="DROP VIEW resumo_mensal_residuos;",

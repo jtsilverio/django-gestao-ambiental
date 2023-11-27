@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_filters",
     "apps.cluster.apps.ClusterConfig",
-    "apps.classe.apps.ClasseConfig",
+    "apps.tipo_residuos.apps.TipoResiduosConfig",
     "apps.destinacao.apps.DestinacaoConfig",
     "apps.entrada.apps.EntradaConfig",
     "apps.saida.apps.SaidaConfig",

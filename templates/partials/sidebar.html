@@ -58,7 +58,7 @@
             {% if item.submenu %}
             <li class="nav-item">
                 <span class="nav-link collapsed d-flex justify-content-between align-items-center"
-                    data-bs-toggle="collapse" data-bs-target="#submenu-{{ item.name }}">
+                    data-bs-toggle="collapse" data-bs-target="#submenu-{{ item.name|cut:" " }}">
                     <span>
                         <span class="sidebar-icon">
                             <i class="{{ item.icon }}"></i>
@@ -70,7 +70,7 @@
                     </span>
                 </span>
 
-                <div class="multi-level collapse" role="list" id="submenu-{{ item.name }}" aria-expanded="false">
+                <div class="multi-level collapse" role="list" id="submenu-{{ item.name|cut:" " }}" aria-expanded="false">
                     {% for subitem in item.submenu %}
                     <ul class="flex-column nav">
                         <li

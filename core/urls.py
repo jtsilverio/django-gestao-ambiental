@@ -1,4 +1,4 @@
-"""core URL Configuration
+"""Core URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -24,7 +24,7 @@ urlpatterns = [
     path("saida/", include("apps.saida.urls")),
     path("fornecedor/", include("apps.fornecedor.urls")),
     path("cluster/", include("apps.cluster.urls")),
-    path("classe/", include("apps.classe.urls")),
+    path("tipo_residuos/", include("apps.tipo_residuos.urls")),
     path("destinacao/", include("apps.destinacao.urls")),
     path("agua/", include("apps.agua.urls")),
     path("eletricidade/", include("apps.eletricidade.urls")),

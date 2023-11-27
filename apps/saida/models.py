@@ -1,14 +1,16 @@
 from django.db import models
 
-from apps.classe.models import Classe
 from apps.cluster.models import Cluster
 from apps.fornecedor.models import Destinacao, Fornecedor
+from apps.tipo_residuos.models import TipoResiduos
 
 
 # Create your models here.
 class Saida(models.Model):
     id_saida = models.AutoField(primary_key=True)
-    id_classe = models.ForeignKey(Classe, models.DO_NOTHING, db_column="id_classe")
+    id_tp_residuos = models.ForeignKey(
+        TipoResiduos, models.DO_NOTHING, db_column="id_tp_residuos"
+    )
     id_cluster = models.ForeignKey(Cluster, models.DO_NOTHING, db_column="id_cluster")
     id_fornecedor = models.ForeignKey(
         Fornecedor, models.DO_NOTHING, db_column="id_fornecedor"

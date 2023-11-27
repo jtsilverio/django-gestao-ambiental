@@ -7,7 +7,7 @@ class ResumoMensalResiduos(models.Model):
     ano = models.CharField(max_length=5)
     mes = models.CharField(max_length=5)
     cluster = models.CharField(max_length=50)
-    classe = models.CharField(max_length=50)
+    tp_residuos = models.CharField(max_length=50)
     peso = models.FloatField()
     receita = models.FloatField()
     custo = models.FloatField()
