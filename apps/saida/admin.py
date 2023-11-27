@@ -8,7 +8,6 @@ class SaidaAdmin(admin.ModelAdmin):
         "__str__",
         "id_tp_residuos",
         "id_cluster",
-        "id_fornecedor",
         "id_destinacao",
         "data",
         "peso",
@@ -20,14 +19,12 @@ class SaidaAdmin(admin.ModelAdmin):
     list_filter = [
         "id_tp_residuos",
         "id_cluster",
-        "id_fornecedor",
         "id_destinacao",
         "data",
     ]
     search_fields = [
         "id_tp_residuos__nome",
         "id_cluster__nome",
-        "id_fornecedor__nome",
         "id_destinacao__nome",
         "data",
     ]

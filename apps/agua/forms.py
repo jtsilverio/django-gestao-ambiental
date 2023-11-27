@@ -14,11 +14,13 @@ class AguaForm(ModelForm):
         fields = [
             "data",
             "id_cluster",
+            "id_unidade_consumo",
             "fonte",
             "consumo",
         ]
         labels = {
             "id_cluster": "Cluster",
+            "id_unidade_consumo": "Unidade de Consumo",
             "dt_agua": "Data",
             "fonte": "Fonte",
             "consumo": "Consumo (m³)",
@@ -27,7 +29,13 @@ class AguaForm(ModelForm):
             "id_cluster": Select(
                 attrs={
                     "class": "form-select",
-                    "placeholder": "Localidade",
+                    "placeholder": "Cluster",
+                }
+            ),
+            "id_unidade_consumo": Select(
+                attrs={
+                    "class": "form-select",
+                    "placeholder": "Unidade de Consumo",
                 }
             ),
             "data": DateInput(

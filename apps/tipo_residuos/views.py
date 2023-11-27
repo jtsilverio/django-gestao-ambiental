@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -57,3 +58,11 @@ def delete(request, pk):
         messages.warning(request, f"{APP_TITLE} Excluído")
 
     return redirect(f"{APP_NAME}:index")
+
+
+def get_class(request):
+    id_tp_residuos = request.GET.get("id_tp_residuos")
+    tp_residuos = get_object_or_404(Model, pk=id_tp_residuos)
+    classe = tp_residuos.classe
+
+    return JsonResponse({"classe": classe})

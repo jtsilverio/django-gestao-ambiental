@@ -1,0 +1,156 @@
+[
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 1,
+      "fields": {
+          "nome": "Papel/papelão",
+          "classe": "IIA",
+          "unidade_medida": "ton"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 2,
+      "fields": {
+          "nome": "Rejeitos",
+          "classe": "IIA",
+          "unidade_medida": "ton"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 3,
+      "fields": {
+          "nome": "Efluente não reciclável",
+          "classe": "IIA",
+          "unidade_medida": "m³"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 4,
+      "fields": {
+          "nome": "Lodo de fossa séptica",
+          "classe": "IIA",
+          "unidade_medida": "m³"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 5,
+      "fields": {
+          "nome": "Plástico",
+          "classe": "IIB",
+          "unidade_medida": "ton"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 6,
+      "fields": {
+          "nome": "Madeira",
+          "classe": "IIB",
+          "unidade_medida": "ton"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 7,
+      "fields": {
+          "nome": "Sucata metálica e fios de cobre",
+          "classe": "I",
+          "unidade_medida": "ton"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 8,
+      "fields": {
+          "nome": "Vidro",
+          "classe": "IIB",
+          "unidade_medida": "ton"
+      }
+  },
+    {
+        "model": "tipo_residuos.TipoResiduos",
+        "pk": 9,
+        "fields": {
+            "nome": "Lâmpadas fluorescentes",
+            "classe": "I",
+            "unidade_medida": "ton"
+        }
+    },
+    {
+        "model": "tipo_residuos.TipoResiduos",
+        "pk": 10,
+        "fields": {
+            "nome": "Pilhas e baterias usadas",
+            "classe": "I",
+            "unidade_medida": "ton"
+        }
+    },
+    {
+        "model": "tipo_residuos.TipoResiduos",
+        "pk": 11,
+        "fields": {
+            "nome": "Cartuchos e toner",
+            "classe": "I",
+            "unidade_medida": "ton"
+        }
+    },
+    {
+        "model": "tipo_residuos.TipoResiduos",
+        "pk": 12,
+        "fields": {
+            "nome": "Panos e trapos contaminados",
+            "classe": "I",
+            "unidade_medida": "ton"
+        }
+    },
+    {
+        "model": "tipo_residuos.TipoResiduos",
+        "pk": 13,
+        "fields": {
+            "nome": "Solo contaminado",
+            "classe": "I",
+            "unidade_medida": "ton"
+        }
+    },
+    {
+        "model": "tipo_residuos.TipoResiduos",
+        "pk": 14,
+        "fields": {
+            "nome": "Embalagem de produto químico",
+            "classe": "I",
+            "unidade_medida": "ton"
+        }
+    },
+
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 15,
+      "fields": {
+          "nome": "Óleo lubrificante usado",
+          "classe": "I",
+          "unidade_medida": "m³"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 11,
+      "fields": {
+          "nome": "Resíduo construção civil",
+          "classe": "IIB",
+          "unidade_medida": "ton"
+      }
+  },
+  {
+      "model": "tipo_residuos.TipoResiduos",
+      "pk": 16,
+      "fields": {
+          "nome": "Pneu usado",
+          "classe": "IIB",
+          "unidade_medida": "ton"
+      }
+  }
+]
