@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core import serializers
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -54,3 +56,10 @@ def delete(request, pk):
         messages.warning(request, f"{APP_TITLE} Excluído")
 
     return redirect(f"{APP_NAME}:index")
+
+
+def get_unidades_consumo(request):
+    id_cluster = request.GET.get("id_cluster")
+    unidades_consumo = Model.objects.filter(id_cluster=id_cluster).order_by("nome")
+    unidades_consumo = serializers.serialize("json", unidades_consumo)
+    return JsonResponse(unidades_consumo, safe=False)
