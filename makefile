@@ -14,7 +14,7 @@ clean:
 	@find . -type d -name ".pytest_cache" -exec rm -r "{}" +
 
 .PHONY: clean_migrations
-clean_migrations:
+clean_migrations: clean
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -not -path "./.venv/*" -not -path "./venv/*" -not -path "*/home/migrations/0001_create_database_views.py" -delete
 	find . -path "*/migrations/*.pyc" -not -path "./.venv/*" -not -path "./venv/*" -not -path "*/home/migrations/0001_create_database_views.pyc" -delete
 	-rm db.sqlite3
@@ -57,3 +57,8 @@ black:
 # generate a new django secret key and copy it to .env file in the form SECRET_KEY=...
 django-secret-key:
 	$(PYTHON_INTERPRETER) -c 'from django.core.management.utils import get_random_secret_key; print("SECRET_KEY=" + get_random_secret_key())' >> .env
+
+
+.PHONY: runserver
+runserver:
+	$(PYTHON_INTERPRETER) manage.py runserver
