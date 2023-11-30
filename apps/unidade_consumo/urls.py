@@ -9,4 +9,7 @@ urlpatterns = [
     path("cadastro/", views.Create.as_view(), name="create"),
     path("edit/<int:pk>/", views.Edit.as_view(), name="edit"),
     path("delete/<int:pk>/", views.delete, name="delete"),
+    path(
+        "get_unidades_consumo/", views.get_unidades_consumo, name="get_unidades_consumo"
+    ),
 ]
