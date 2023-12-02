@@ -6,7 +6,6 @@ MENU_SIDEBAR = [
     },
     {
         "name": "Resíduos",
-        "url": "admin:index",
         "icon": "bi bi-trash3-fill",
         "submenu": [
             {
@@ -20,14 +19,28 @@ MENU_SIDEBAR = [
         ],
     },
     {
-        "name": "Eletricidade",
-        "url": "eletricidade:index",
-        "icon": "bi bi-lightning-charge-fill",
+        "name": "Fugitivas",
+        "icon": "bi bi-fan",
+        "submenu": [
+            {
+                "name": "AC e Extintores",
+                "url": "ac_extintores:index",
+            },
+            {
+                "name": "SF6 e NF3",
+                "url": "ac_extintores:index",
+            },
+        ],
     },
     {
         "name": "Água",
         "url": "agua:index",
         "icon": "bi bi-droplet-fill",
+    },
+    {
+        "name": "Eletricidade",
+        "url": "eletricidade:index",
+        "icon": "bi bi-lightning-charge-fill",
     },
     {
         "name": "Combustível",

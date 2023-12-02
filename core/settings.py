@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "apps.eletricidade.apps.EletricidadeConfig",
     "apps.tipo_combustivel.apps.TipoCombustivelConfig",
     "apps.unidade_consumo.apps.UnidadeConsumoConfig",
+    "apps.ac_extintores.apps.ACExtintoresConfig",
 ]
 
 MIDDLEWARE = [
