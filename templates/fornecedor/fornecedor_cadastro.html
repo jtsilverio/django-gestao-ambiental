@@ -42,41 +42,5 @@ Cadastro Fornecedor
   const dropdown_residuos = document.getElementById('id_tp_fornecedor')
   const destinacao_checkbox = document.getElementsByClassName('form-check-input')
   const form = document.getElementById('form-fornecedor');
-
-
-  // add an event listener to the dropdown
-  dropdown_residuos.addEventListener('change', function () {
-    // check if the selected value is the one that should enable the field
-    if (dropdown_residuos.value === 'Resíduos' | dropdown_residuos.value === 'Selecione...') {
-      for (let i = 0; i < destinacao_checkbox.length; i++) {
-        destinacao_checkbox[i].disabled = false
-      }
-    } else {
-      for (let i = 0; i < destinacao_checkbox.length; i++) {
-        destinacao_checkbox[i].checked = false
-        destinacao_checkbox[i].disabled = true
-      }
-    }
-  })
-
-  // add an event listener to the form
-  form.addEventListener('submit', function (event) {
-    // check if the id_tp_fornecedor is "Resíduos"
-    if (dropdown_residuos.value === 'Resíduos') {
-      // check if at least one Destinacao checkbox is checked
-      let atLeastOneChecked = false;
-      for (let i = 0; i < destinacao_checkbox.length; i++) {
-        if (destinacao_checkbox[i].checked) {
-          atLeastOneChecked = true;
-          break;
-        }
-      }
-      if (!atLeastOneChecked) {
-        // prevent the form from submitting
-        event.preventDefault();
-        alert('É obrigatório ao menos um tipo de Destinação feita pelo Fornecedor sendo cadastrado.');
-      }
-    }
-  });
 </script>
 {% endblock %}

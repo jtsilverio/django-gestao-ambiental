@@ -23,6 +23,7 @@ class FornecedorForm(ModelForm):
         fields = ["nome", "destinacao"]
         labels = {
             "nome": "Nome",
+            "cidade": "Cidade",
             "destinacao": "Destinação",
         }
 
