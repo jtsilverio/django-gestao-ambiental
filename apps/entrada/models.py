@@ -1,17 +1,18 @@
 from django.db import models
 
-from apps.classe.models import Classe
 from apps.cluster.models import Cluster
+from apps.tipo_residuos.models import TipoResiduos
 
 
 class Entrada(models.Model):
     id_entrada = models.AutoField(primary_key=True)
     data = models.DateField(null=False, blank=False)
-    id_classe = models.ForeignKey(
-        Classe,
+    id_tp_residuos = models.ForeignKey(
+        TipoResiduos,
         models.DO_NOTHING,
-        db_column="id_classe",
+        db_column="id_tp_residuos",
     )
+
     id_cluster = models.ForeignKey(
         Cluster,
         models.DO_NOTHING,

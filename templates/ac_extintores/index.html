@@ -1,0 +1,58 @@
+{% extends 'base_card.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-centered mb-0 rounded table-sm">
+        <thead class="thead-light">
+            <tr>
+                <th class="align-middle border-0 rounded-start">Data</th>
+                <th class="align-middle border-0">Cluster ID</th>
+                <th class="align-middle border-0">Fonte Emissao</th>
+                <th class="align-middle border-0">Tipo Gás</th>
+                <th class="align-middle border-0">Número de Unidades</th>
+                <th class="align-middle border-0">Tipo Cadastro</th>
+                <th class="align-middle border-0">Carga</th>
+                <th class="align-middle border-0">Capacidade</th>
+                <th class="align-middle border-0">Recuperação</th>
+                <th class="align-middle border-0 rounded-end">  </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in object_list %}
+            <tr class="align-middle">
+                <td class="align-middle">{{ entry.data }}</td>
+                <td class="align-middle">{{ entry.id_cluster }}</td>
+                <td class="align-middle">{{ entry.get_fonte_emissao_display }}</td>
+                <td class="align-middle">{{ entry.tp_gas }}</td>
+                <td class="align-middle">{{ entry.n_unidades }}</td>
+                <td class="align-middle">{{ entry.get_tp_cadastro_display }}</td>
+                <td class="align-middle">{{ entry.carga }}</td>
+                <td class="align-middle">{{ entry.capacidade }}</td>
+                <td class="align-middle">{{ entry.recuperacao }}</td>
+
+                <td>
+                    <div class="d-flex justify-content-end me-3">
+                        <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">
+                            <button class="btn btn-sm shadow-none border-0">
+                                <i class="bi bi-pencil-square text-secondary"></i>
+                            </button>
+                        </a>
+                        <form onsubmit="return confirm('Confirmar deleção?');"
+                            action="{% url app_name|add:':delete' pk=entry.id %}" method="POST" value="delete">
+                            {% csrf_token %}
+                            <button class="btn btn-sm shadow-none border-0" title="Deletar">
+                                <i class="bi bi-x-circle text-danger"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Nenhum Cadastro</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

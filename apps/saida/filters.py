@@ -6,9 +6,9 @@ from django.forms import (
     Select,
 )
 
-from apps.classe.models import Classe
 from apps.cluster.models import Cluster
 from apps.fornecedor.models import Destinacao, Fornecedor
+from apps.tipo_residuos.models import TipoResiduos
 
 
 class SaidaFilter(django_filters.FilterSet):
@@ -34,9 +34,9 @@ class SaidaFilter(django_filters.FilterSet):
         widget=Select(attrs={"class": "form-select"}),
     )
 
-    id_classe = django_filters.ModelMultipleChoiceFilter(
+    id_tp_residuos = django_filters.ModelMultipleChoiceFilter(
         label="Classe",
-        queryset=Classe.objects.all(),
+        queryset=TipoResiduos.objects.all(),
         widget=CheckboxSelectMultiple(attrs={"class": "form-check-input"}),
     )
 

@@ -6,9 +6,8 @@ from .models import Saida
 class SaidaAdmin(admin.ModelAdmin):
     list_display = [
         "__str__",
-        "id_classe",
+        "id_tp_residuos",
         "id_cluster",
-        "id_fornecedor",
         "id_destinacao",
         "data",
         "peso",
@@ -18,16 +17,14 @@ class SaidaAdmin(admin.ModelAdmin):
         "cdf",
     ]
     list_filter = [
-        "id_classe",
+        "id_tp_residuos",
         "id_cluster",
-        "id_fornecedor",
         "id_destinacao",
         "data",
     ]
     search_fields = [
-        "id_classe__nome",
+        "id_tp_residuos__nome",
         "id_cluster__nome",
-        "id_fornecedor__nome",
         "id_destinacao__nome",
         "data",
     ]

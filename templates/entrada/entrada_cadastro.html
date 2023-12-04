@@ -23,4 +23,23 @@
             </form>
         </div>
     </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dropdown = document.getElementById('id_id_tp_residuos');
+            var classeResiduo = document.getElementById('id_classe_residuo');
+            dropdown.addEventListener('change', function() {
+                var selectedValue = this.value;
+                classeResiduo.value = '';
+                // Make an AJAX request to your server with the selected value
+                fetch('/tipo_residuos/get_class/?id_tp_residuos=' + selectedValue)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the classe_residuo field with the returned data
+                        classeResiduo.value = data.classe;
+                    });
+            });
+        });
+    </script>
 {% endblock content %}

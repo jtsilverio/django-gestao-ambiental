@@ -35,11 +35,11 @@ class FornecedorCreate(SuccessMessageMixin, CreateView):
     success_message = "Fornecedor cadastrado"
     success_url = reverse_lazy("fornecedor")
 
-    ## make destinacao disabled by default
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        form.fields["destinacao"].disabled = True
-        return form
+    # ## make destinacao disabled by default
+    # def get_form(self, form_class=None):
+    #     form = super().get_form(form_class)
+    #     form.fields["destinacao"].disabled = True
+    #     return form
 
 
 class FornecedorEdit(SuccessMessageMixin, UpdateView):
@@ -57,4 +57,4 @@ def fornecedor_delete(request, pk):
         entry.delete()
         messages.warning(request, "Fornecedor excluído")
 
-    return redirect("classe")
+    return redirect("fornecedor")

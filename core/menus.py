@@ -6,7 +6,6 @@ MENU_SIDEBAR = [
     },
     {
         "name": "Resíduos",
-        "url": "admin:index",
         "icon": "bi bi-trash3-fill",
         "submenu": [
             {
@@ -17,24 +16,21 @@ MENU_SIDEBAR = [
                 "name": "Saída",
                 "url": "saida",
             },
-            {
-                "name": "Fornecedor",
-                "url": "fornecedor",
-            },
-            {
-                "name": "Classe",
-                "url": "classe",
-            },
-            {
-                "name": "Destinação",
-                "url": "destinacao",
-            },
         ],
     },
     {
-        "name": "Eletricidade",
-        "url": "eletricidade:index",
-        "icon": "bi bi-lightning-charge-fill",
+        "name": "Fugitivas",
+        "icon": "bi bi-fan",
+        "submenu": [
+            {
+                "name": "AC e Extintores",
+                "url": "ac_extintores:index",
+            },
+            {
+                "name": "SF6 e NF3",
+                "url": "gas_sf6_nf3:index",
+            },
+        ],
     },
     {
         "name": "Água",
@@ -42,25 +38,37 @@ MENU_SIDEBAR = [
         "icon": "bi bi-droplet-fill",
     },
     {
+        "name": "Eletricidade",
+        "url": "eletricidade:index",
+        "icon": "bi bi-lightning-charge-fill",
+    },
+    {
         "name": "Combustível",
         "url": "combustivel:index",
         "icon": "bi bi-fuel-pump-fill",
     },
+    {"name": "div"},
     {
-        "name": "Cluster",
+        "name": "Clusters",
         "url": "cluster:index",
         "icon": "bi bi-globe-americas",
     },
-    {"name": "div"},
     {
-        "name": "Tipo de Combustível",
+        "name": "Unid. Consumidoras",
+        "url": "unidade_consumo:index",
+        "icon": "bi bi-building-fill-gear",
+    },
+    {"name": "Tipo Resíduos", "url": "tipo_residuos:index", "icon": "bi bi-trash-fill"},
+    {"name": "Destinação Resíduos", "url": "destinacao", "icon": "bi bi-recycle"},
+    {
+        "name": "Tipos Combustível",
         "url": "tipo_combustivel:index",
-        "icon": "bi bi-tags-fill",
+        "icon": "bi bi-fuel-pump-fill",
     },
     {
-        "name": "Unidade de Consumo",
-        "url": "unidade_consumo:index",
-        "icon": "bi bi-house-fill",
+        "name": "Fornecedores",
+        "url": "fornecedor",
+        "icon": "bi bi-shop",
     },
     {"name": "div"},
     {

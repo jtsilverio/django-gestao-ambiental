@@ -14,11 +14,13 @@ class EletricidadeForm(ModelForm):
         fields = [
             "data",
             "id_cluster",
+            "id_unidade_consumo",
             "consumo",
         ]
         labels = {
             "data": "Data",
             "id_cluster": "Cluster",
+            "id_unidade_consumo": "Unidade de Consumo",
             "consumo": "Consumo (kWh)",
         }
         widgets = {
@@ -26,6 +28,12 @@ class EletricidadeForm(ModelForm):
                 attrs={
                     "class": "form-select",
                     "placeholder": "Cluster",
+                }
+            ),
+            "id_unidade_consumo": Select(
+                attrs={
+                    "class": "form-select",
+                    "placeholder": "Unidade de Consumo",
                 }
             ),
             "data": DateInput(

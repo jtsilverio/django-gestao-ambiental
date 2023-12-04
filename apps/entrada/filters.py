@@ -4,8 +4,8 @@ from django.forms import (
     DateInput,
 )
 
-from apps.classe.models import Classe
 from apps.cluster.models import Cluster
+from apps.tipo_residuos.models import TipoResiduos
 
 
 class EntradaFilter(django_filters.FilterSet):
@@ -19,9 +19,9 @@ class EntradaFilter(django_filters.FilterSet):
             }
         ),
     )
-    id_classe = django_filters.ModelMultipleChoiceFilter(
-        label="Classe",
-        queryset=Classe.objects.all(),
+    id_tp_residuos = django_filters.ModelMultipleChoiceFilter(
+        label="Tipo de Resíduo",
+        queryset=TipoResiduos.objects.all(),
         widget=CheckboxSelectMultiple(attrs={"class": "form-check-input"}),
     )
     id_cluster = django_filters.ModelMultipleChoiceFilter(

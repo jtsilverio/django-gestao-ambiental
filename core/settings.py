@@ -44,8 +44,8 @@ DEBUG = env("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".fly.dev"]
 CSRF_TRUSTED_ORIGINS = ["https://django-gestao-residuos.fly.dev"]
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 
 # Application definition
 
@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_filters",
     "apps.cluster.apps.ClusterConfig",
-    "apps.classe.apps.ClasseConfig",
+    "apps.tipo_residuos.apps.TipoResiduosConfig",
     "apps.destinacao.apps.DestinacaoConfig",
     "apps.entrada.apps.EntradaConfig",
     "apps.saida.apps.SaidaConfig",
@@ -69,6 +69,8 @@ INSTALLED_APPS = [
     "apps.eletricidade.apps.EletricidadeConfig",
     "apps.tipo_combustivel.apps.TipoCombustivelConfig",
     "apps.unidade_consumo.apps.UnidadeConsumoConfig",
+    "apps.ac_extintores.apps.ACExtintoresConfig",
+    "apps.gas_sf6_nf3.apps.GasSF6NF3Config",
 ]
 
 MIDDLEWARE = [
