@@ -5,10 +5,10 @@ from apps.cluster.models import Cluster
 
 class Agua(models.Model):
     FONTE_CHOICES = [
-        ("Ligação Municipal", "Ligação Municipal"),
-        ("Poço", "Poço"),
-        ("Captação Superfície", "Captação Superfície"),
-        ("Caminhão Pipa", "Caminhão Pipa"),
+        ("LM", "Ligação Municipal"),
+        ("P", "Poço"),
+        ("CS", "Captação Superfície"),
+        ("CP", "Caminhão Pipa"),
     ]
 
     id = models.AutoField(primary_key=True)
@@ -24,7 +24,7 @@ class Agua(models.Model):
     )
     data = models.DateField(null=False, blank=False)
     fonte = models.CharField(
-        max_length=20,
+        max_length=3,
         choices=FONTE_CHOICES,
         null=False,
         blank=False,
