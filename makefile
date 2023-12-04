@@ -62,3 +62,8 @@ django-secret-key:
 .PHONY: runserver
 runserver:
 	$(PYTHON_INTERPRETER) manage.py runserver
+
+.PHONY: newapp
+newapp:
+	mkdir apps/$(name)
+	$(PYTHON_INTERPRETER) manage.py startapp $(name) apps/$(name)
