@@ -1,6 +1,6 @@
 from django import template
 
-from core import menus
+from gestao_ambiental import menus
 
 register = template.Library()
 

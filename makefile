@@ -44,7 +44,7 @@ requirements: install-pip-tools install-build
 		--extra dev \
 		pyproject.toml
 
-install_dependencies: requirements
+install_requirements: requirements
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
