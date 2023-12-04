@@ -28,7 +28,7 @@ MENU_SIDEBAR = [
             },
             {
                 "name": "SF6 e NF3",
-                "url": "ac_extintores:index",
+                "url": "gas_sf6_nf3:index",
             },
         ],
     },
@@ -53,17 +53,17 @@ MENU_SIDEBAR = [
         "url": "cluster:index",
         "icon": "bi bi-globe-americas",
     },
+    {
+        "name": "Unid. Consumidoras",
+        "url": "unidade_consumo:index",
+        "icon": "bi bi-building-fill-gear",
+    },
     {"name": "Tipo Resíduos", "url": "tipo_residuos:index", "icon": "bi bi-trash-fill"},
     {"name": "Destinação Resíduos", "url": "destinacao", "icon": "bi bi-recycle"},
     {
         "name": "Tipos Combustível",
         "url": "tipo_combustivel:index",
         "icon": "bi bi-fuel-pump-fill",
-    },
-    {
-        "name": "Unidades Consumo",
-        "url": "unidade_consumo:index",
-        "icon": "bi bi-building-fill-gear",
     },
     {
         "name": "Fornecedores",
