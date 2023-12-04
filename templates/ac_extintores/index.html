@@ -5,14 +5,31 @@
     <table class="table table-centered mb-0 rounded table-sm">
         <thead class="thead-light">
             <tr>
-                <th class="align-middle border-0 rounded-start">Tipo Gás </th>
-                <th class="align-middle border-0 rounded-end"></th>
+                <th class="align-middle border-0 rounded-start">Data</th>
+                <th class="align-middle border-0">Cluster ID</th>
+                <th class="align-middle border-0">Fonte Emissao</th>
+                <th class="align-middle border-0">Tipo Gás</th>
+                <th class="align-middle border-0">Número de Unidades</th>
+                <th class="align-middle border-0">Tipo Cadastro</th>
+                <th class="align-middle border-0">Carga</th>
+                <th class="align-middle border-0">Capacidade</th>
+                <th class="align-middle border-0">Recuperação</th>
+                <th class="align-middle border-0 rounded-end">  </th>
             </tr>
         </thead>
         <tbody>
             {% for entry in object_list %}
             <tr class="align-middle">
-                <td>{{ entry.tp_gas }}</td>
+                <td class="align-middle">{{ entry.data }}</td>
+                <td class="align-middle">{{ entry.id_cluster }}</td>
+                <td class="align-middle">{{ entry.get_fonte_emissao_display }}</td>
+                <td class="align-middle">{{ entry.tp_gas }}</td>
+                <td class="align-middle">{{ entry.n_unidades }}</td>
+                <td class="align-middle">{{ entry.get_tp_cadastro_display }}</td>
+                <td class="align-middle">{{ entry.carga }}</td>
+                <td class="align-middle">{{ entry.capacidade }}</td>
+                <td class="align-middle">{{ entry.recuperacao }}</td>
+
                 <td>
                     <div class="d-flex justify-content-end me-3">
                         <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">

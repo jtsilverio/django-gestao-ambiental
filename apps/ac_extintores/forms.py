@@ -9,10 +9,11 @@ class ACExtintoresForm(forms.ModelForm):
         fields = "__all__"
         labels = {
             "id_cluster": "Cluster",
-            "fonte_emissao": "Fonte de Emissão",
+            "data": "Data",
+            "fonte_emissao": "F. Emissão",
             "tp_gas": "Tipo de Gás",
-            "n_unidades": "Número de Unidades",
-            "tp_unidade": "Tipo de Unidade",
+            "n_unidades": "N. Unidades",
+            "tp_cadastro": "Cadastro",
             "carga": "Carga",
             "capacidade": "Capacidade",
             "recuperacao": "Recuperação",
@@ -25,3 +26,7 @@ class ACExtintoresForm(forms.ModelForm):
                 field.widget.attrs.update({"class": "form-control"})
             elif isinstance(field, forms.ChoiceField):
                 field.widget.attrs.update({"class": "form-select"})
+            elif isinstance(field, forms.DateField):
+                field.widget = forms.DateInput(
+                    attrs={"type": "date", "class": "form-control"}
+                )
