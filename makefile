@@ -22,6 +22,7 @@ clean_migrations: clean
 migrations: clean_migrations
 	$(PYTHON_INTERPRETER) manage.py makemigrations
 	$(PYTHON_INTERPRETER) manage.py migrate
+	$(PYTHON_INTERPRETER) manage.py loaddata initial_data
 
 install-pip-tools:
 	$(PYTHON_INTERPRETER) -m pip install pip-tools
