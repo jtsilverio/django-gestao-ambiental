@@ -36,6 +36,14 @@ repos:
         entry: check-docstring-first
         language: python
         types: [python]
+      - id: docformatter
+        name: docformatter
+        description: formats docstrings to follow PEP 257.
+        entry: docformatter
+        language: python
+        types: [text]
+        args: [--in-place]
+        stages: [commit]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.1.6
     hooks:
