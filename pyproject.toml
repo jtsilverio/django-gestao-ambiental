@@ -15,11 +15,10 @@ dependencies = [
     "django-environ",
     "gunicorn",
     "plotly",
-    "pip-tools",
 ]
 
 [project.optional-dependencies]
-dev = ["pre-commit", "pre-commit-hooks", "docformatter", "ruff", "djlint"]
+dev = ["pre-commit", "pre-commit-hooks", "docformatter", "ruff", "djlint", "pip-tools"]
 
 [tool.setuptools.dynamic]
 version = { attr = "version.__version__" }
