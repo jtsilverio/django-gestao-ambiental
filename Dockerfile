@@ -17,10 +17,10 @@ RUN set -ex && \
     rm -rf /root/.cache/
 COPY . /code
 
+RUN python manage.py collectstatic
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 RUN python manage.py loaddata initial_data
-RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
