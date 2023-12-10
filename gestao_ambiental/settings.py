@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_filters",
+    "django_plotly_dash.apps.DjangoPlotlyDashConfig",
     "apps.cluster.apps.ClusterConfig",
     "apps.tipo_residuos.apps.TipoResiduosConfig",
     "apps.destinacao.apps.DestinacaoConfig",
@@ -78,6 +79,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_plotly_dash.middleware.BaseMiddleware",
 ]
 
 ROOT_URLCONF = "gestao_ambiental.urls"
@@ -179,3 +181,7 @@ MESSAGE_TAGS = {
 }
 
 PAGESIZE = 15
+
+# to allow plotly dash to serve assets
+# https://django-plotly-dash.readthedocs.io/en/latest/installation.html
+X_FRAME_OPTIONS = "SAMEORIGIN"
