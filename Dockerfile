@@ -13,7 +13,7 @@ COPY db.sqlite3 /code/db.sqlite3
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
     pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt && \
+    pip install -r /tmp/requirements.txt --no-deps && \
     rm -rf /root/.cache/
 COPY . /code
 
