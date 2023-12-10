@@ -2,23 +2,25 @@
 A enviromental management CRUD made in Django.
 
 # Set up para desenvolvimento:
-## Criar arquivo `.env`
-Nesse projeto estamos usando o pacote `environ` para administrar as variáveis de ambiente requeridas pelo projeto. Assim, na pasta raiz do projeto devemos criar um arquivo `.env` que contem as variáveis de ambiente usadas pelo sistema:
-  - `SECRET_KEY`: Uma chave secreta gerada pelo Django para proteção de formuários e cookies
-  - `DEBUG`: Uma flag booleana que indica se estamos em um ambiente de produção ou de desenvolvimento.
+## Váriaveis de ambiente
+```
+make django-env-vars
+```
 
-2. Para setarmos as variáveis no `.env`
-  - Dentro da pasta raiz do projeto crie um arquivo chamado `.env`.
-  - Se estiver em um ambiente UNIX rode `make django-secret-key`.
-    - Esse comando gera uma nova chave secreta e cola ela dentro do `.env`.
-  - Se estiver em um ambiente windows, devemos gerar e colar manualmente dentro do `.env`
-    - Para isso dentro do interpretador python faça:
-      ```
-      from django.core.management.utils import get_random_secret_key
-      print("SECRET_KEY=" + get_random_secret_key())
-      ```
-      - Cole o output desse comando no arquivo `.env`
-  - Para setar o debug como True, caso em esteja em um ambiente de desenvolvimento, abra o `.env` adicione `DEBUG=True`.
+Nesse projeto é usado o pacote `environ` para administrar as variáveis de ambiente   dentro do arquivo `.env`. As variáveis de ambiente requeridas são:
+  - `SECRET_KEY`: Uma chave secreta gerada pelo Django para proteção de formuários e cookies
+    - A chave secreta pode ser gerada e setada dentro do `.env` automaticamente usando o comando `make django-secret-key`.
+  - `DEBUG`: Uma flag booleana que indica se estamos em um ambiente de produção ou de desenvolvimento. Se estivermos em um ambiente de desenvolvimento, o valor dessa flag deve ser atribuido manualmente como `True`.
+
+## Gestão de dependências
+```
+make install_requirements
+```
+
+As dependências do projeto são listadas dentro do `pyproject.toml` e compiladas para o `requirements.txt` usando o comando `make requirements`. Esse comando usa o `pip-tools` para compilar todas dependências e gerar um hash para cada uma delas. 
+
+Com o `requirements.txt` gerado, pode-se instalar as dependências usando apenas o `pip install -r requirements.txt`. Para facilitar o processo de instalação, o comando `make install_requirements` pode ser usado para realizar todo processo de instalar o pip-tools, compilar os requirements e instalar as dependências dentro do ambiente python.
+
 
 # Frontend Theme:
 - https://demo.themesberg.com/volt/pages/dashboard/dashboard.html
