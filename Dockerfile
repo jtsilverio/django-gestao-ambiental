@@ -17,11 +17,11 @@ RUN set -ex && \
     rm -rf /root/.cache/
 COPY . /code
 
-RUN python manage.py collectstatic
+RUN python manage.py collectstatic --noinput
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 RUN python manage.py loaddata initial_data
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "core.wsgi"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "gestao_ambiental.wsgi"]
