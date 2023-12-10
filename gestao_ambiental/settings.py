@@ -155,7 +155,13 @@ DATE_INPUT_FORMATS = ("%d/%m/%Y", "%Y-%m-%d")
 STATIC_URL = "static/"
 STATICFILES_DIRS = [path.join(BASE_DIR, "gestao_ambiental/static")]
 STATIC_ROOT = path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-STORAGES
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Default primary key field type
