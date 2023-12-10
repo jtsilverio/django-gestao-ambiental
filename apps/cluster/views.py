@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -50,7 +51,10 @@ def delete(request, pk):
     entry = get_object_or_404(Model, pk=pk)
 
     if request.method == "POST":
-        entry.delete()
-        messages.warning(request, f"{APP_TITLE} Excluído")
-
-    return redirect(f"{APP_NAME}:index")
+        try:
+            entry.delete()
+            messages.warning(request, f"{APP_TITLE} Excluído")
+        except ProtectedError:
+            messages.error(request, f"{APP_TITLE} '{entry.nome}' Não pode ser excluído")
+        finally:
+            return redirect(f"{APP_NAME}:index")

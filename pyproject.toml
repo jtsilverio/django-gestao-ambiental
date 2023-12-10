@@ -10,18 +10,20 @@ requires-python = ">=3.8"
 license = { text = "MIT" }
 dynamic = ["version"]
 dependencies = [
-    "Django<=4.2",
+    "Django<5.0",
     "django-filter",
     "django-environ",
     "gunicorn",
     "plotly",
+    "django-plotly-dash",
+    "whitenoise",
 ]
 
 [project.optional-dependencies]
 dev = ["pre-commit", "pre-commit-hooks", "docformatter", "ruff", "djlint", "pip-tools"]
 
 [tool.setuptools.dynamic]
-version = { attr = "version.__version__" }
+version = { attr = "gestao_ambiental.__init__.__version__" }
 
 [tool.setuptools]
 py-modules = []
