@@ -1,4 +1,8 @@
-ESTADOS_BRASILEIROS = [
+import json
+
+import requests
+
+ESTADOS_BRASILEIROS = (
     ("AC", "Acre"),
     ("AL", "Alagoas"),
     ("AP", "Amapá"),
@@ -26,4 +30,15 @@ ESTADOS_BRASILEIROS = [
     ("SP", "São Paulo"),
     ("SE", "Sergipe"),
     ("TO", "Tocantins"),
-]
+)
+
+all_states = [state[0] for state in ESTADOS_BRASILEIROS]
+all_states = "|".join(all_states)
+
+response = requests.get(
+    f"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{all_states}/municipios"
+)
+
+data = response.json()
+with open("apps/cidades/generate_fixtures/cidades_ibge.json", "w") as f:
+    json.dump(data, f, ensure_ascii=False)

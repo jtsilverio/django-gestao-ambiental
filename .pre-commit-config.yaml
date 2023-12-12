@@ -30,6 +30,7 @@ repos:
         description: prevents giant files from being committed.
         entry: check-added-large-files
         language: python
+        args: [--maxkb=600]
       - id: check-docstring-first
         name: check docstring is first
         description: checks a common error of defining a docstring after code.
@@ -41,7 +42,7 @@ repos:
         description: formats docstrings to follow PEP 257.
         entry: docformatter
         language: python
-        types: [text]
+        types: [python]
         args: [--in-place]
         stages: [commit]
   - repo: https://github.com/astral-sh/ruff-pre-commit

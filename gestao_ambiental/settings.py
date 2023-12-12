@@ -15,7 +15,7 @@ import environ
 from django.contrib.messages import constants as messages
 from django.core.management.utils import get_random_secret_key
 
-from gestao_ambiental.lista_estados import ESTADOS_BRASILEIROS  # noqa
+from apps.cidades.estados_brasileiros import ESTADOS_BRASILEIROS  # noqa
 
 env = environ.Env(
     # set casting, default value
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "apps.unidade_consumo.apps.UnidadeConsumoConfig",
     "apps.ac_extintores.apps.ACExtintoresConfig",
     "apps.gas_sf6_nf3.apps.GasSF6NF3Config",
+    "apps.cidades.apps.CidadesConfig",
 ]
 
 MIDDLEWARE = [

@@ -10,10 +10,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Cluster",
+            name="Cidades",
             fields=[
-                ("id", models.AutoField(primary_key=True, serialize=False)),
-                ("nome", models.CharField(max_length=25)),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("nome", models.CharField(max_length=60)),
                 (
                     "estado",
                     models.CharField(
@@ -51,10 +51,10 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "verbose_name": "Cluster",
-                "verbose_name_plural": "Clusters",
-                "db_table": "cluster",
-                "ordering": ["estado", "nome"],
+                "verbose_name": "Cidade",
+                "verbose_name_plural": "Cidades",
+                "db_table": "cidades",
+                "ordering": ["nome"],
             },
         ),
     ]
