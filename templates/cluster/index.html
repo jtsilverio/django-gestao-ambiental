@@ -7,6 +7,7 @@
             <tr>
                 <th class="align-middle border-0 rounded-start">Nome</th>
                 <th class="align-middle border-0 ">Estado</th>
+                <th class="align-middle border-0 ">Cidade</th>
                 <th class="align-middle border-0 rounded-end"></th>
             </tr>
         </thead>
@@ -15,6 +16,8 @@
             <tr class="align-middle">
                 <td>{{ entry.nome }}</td>
                 <td>{{ entry.estado }}</td>
+                <td>{{ entry.id_cidade }}</td>
+
                 <td>
                     <div class="d-flex justify-content-end me-3">
                         <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">

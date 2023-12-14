@@ -21,11 +21,11 @@ class FornecedorForm(ModelForm):
     class Meta:
         model = Fornecedor
 
-        fields = ["nome", "estado", "cidade", "destinacao"]
+        fields = ["nome", "estado", "id_cidade", "destinacao"]
         labels = {
             "nome": "Nome",
             "estado": "Estado",
-            "cidade": "Cidade",
+            "id_cidade": "Cidade",
             "destinacao": "Destinação",
         }
 
@@ -41,14 +41,9 @@ class FornecedorForm(ModelForm):
                     "class": "form-select",
                 },
             ),
-            "cidade": Select(
+            "id_cidade": Select(
                 attrs={
                     "class": "form-select",
                 },
             ),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["cidade"].choices = ""
-        self.fields["cidade"].widget.attrs["disabled"] = True
