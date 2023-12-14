@@ -2,21 +2,23 @@ from django.urls import path
 
 from apps.fornecedor import views
 
+app_name = "fornecedor"
+
 urlpatterns = [
-    path("", views.fornecedor_index, name="fornecedor"),
+    path("", views.index, name="index"),
     path(
         "cadastro/",
-        views.FornecedorCreate.as_view(),
-        name="fornecedor_cadastro",
+        views.Create.as_view(),
+        name="create",
     ),
     path(
-        "<int:pk>/",
-        views.FornecedorEdit.as_view(),
-        name="fornecedor_edit",
+        "edit/<int:pk>/",
+        views.Edit.as_view(),
+        name="edit",
     ),
     path(
-        "<int:pk>/delete/",
-        views.fornecedor_delete,
-        name="fornecedor_delete",
+        "delete/<int:pk>/",
+        views.delete,
+        name="delete",
     ),
 ]

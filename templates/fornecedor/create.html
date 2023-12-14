@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load is_checkbox %}
+
+{% block title %}
+  Cadastro Fornecedor
+{% endblock %}
+
+{% block javascripts %}
+<script src="{% static 'js/fornecedor.js' %}"></script>
+{% endblock javascripts %}
+
+{% block content %}
+  <section class="card border-0 shadow">
+    <div class="card-body">
+      <form method="POST" id="form-fornecedor">
+        {% csrf_token %}
+        <div class="row g-2">
+          {% for field in form %}
+            <div class="col me-2">
+              {% if field|is_multiple_choice %}
+                {{ field.label_tag }}
+                <div class="card">
+                  <div class="card-body">
+                    {% for choice in field %}
+                      <div class="form-check mb-0">
+                        {{ choice.tag }}
+                        <label class="form-check-label mb-0" for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+                      </div>
+                      {% empty %}
+                      <p>
+                        <small>Nenhuma destinacao cadastrada</small>
+                      </p>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% else %}
+                {{ field.label_tag }}
+                {{ field }}
+              {% endif %}
+            </div>
+          {% endfor %}
+          <div class="col mt-auto">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

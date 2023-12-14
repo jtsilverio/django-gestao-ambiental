@@ -1,5 +1,7 @@
-from django.conf import settings
 from django.db import models
+
+from apps.cidades.estados_brasileiros import ESTADOS_BRASILEIROS
+from apps.cidades.models import Cidades
 
 
 # Create your models here.
@@ -10,7 +12,13 @@ class Cluster(models.Model):
         max_length=2,
         blank=False,
         null=False,
-        choices=settings.ESTADOS_BRASILEIROS,
+        choices=ESTADOS_BRASILEIROS,
+    )
+    id_cidade = models.ForeignKey(
+        Cidades,
+        on_delete=models.PROTECT,
+        related_name="cluster",
+        blank=False,
     )
 
     def __str__(self):
