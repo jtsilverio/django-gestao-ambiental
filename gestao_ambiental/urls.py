@@ -33,6 +33,7 @@ urlpatterns = [
     path("tipo_combustivel/", include("apps.tipo_combustivel.urls", namespace="tipo_combustivel")),
     path("unidade_consumo/", include("apps.unidade_consumo.urls", namespace="unidade_consumo")),
     path("ac_extintores/", include("apps.ac_extintores.urls", namespace="ac_extintores")),
-    path("gas_sf6_nf3/", include("apps.gas_sf6_nf3.urls", namespace="gas_sf6_nf3"))
+    path("gas_sf6_nf3/", include("apps.gas_sf6_nf3.urls", namespace="gas_sf6_nf3")),
+    path("cidades/", include("apps.cidades.urls", namespace="cidades")),
 ]
 # fmt: on
