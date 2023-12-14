@@ -7,14 +7,12 @@ class ClusterForm(ModelForm):
     class Meta:
         model = Cluster
 
-        fields = [
-            "nome",
-            "estado",
-        ]
+        fields = ["nome", "estado", "id_cidade"]
 
         labels = {
             "nome": "Nome",
             "estado": "Estado",
+            "id_cidade": "Cidade",
         }
 
         widgets = {
@@ -28,6 +26,12 @@ class ClusterForm(ModelForm):
                 attrs={
                     "class": "form-select",
                     "placeholder": "Estado",
+                },
+            ),
+            "id_cidade": Select(
+                attrs={
+                    "class": "form-select",
+                    "placeholder": "Cidade",
                 },
             ),
         }

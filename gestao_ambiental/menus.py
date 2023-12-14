@@ -67,7 +67,7 @@ MENU_SIDEBAR = [
     },
     {
         "name": "Fornecedores",
-        "url": "fornecedor",
+        "url": "fornecedor:index",
         "icon": "bi bi-shop",
     },
     {"name": "div"},

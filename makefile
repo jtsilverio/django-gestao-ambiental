@@ -74,6 +74,8 @@ django-env-vars: django-secret-key
 runserver:
 	$(PYTHON_INTERPRETER) manage.py runserver --nostatic
 
+collectstatic:
+	$(PYTHON_INTERPRETER) manage.py collectstatic --noinput
 
 .PHONY: newapp
 newapp:

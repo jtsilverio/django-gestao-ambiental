@@ -6,15 +6,14 @@ from apps.destinacao.models import Destinacao
 
 
 class Fornecedor(models.Model):
-    id_fornecedor = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=50, null=False, blank=False)
     estado = models.CharField(
         max_length=2, null=False, blank=False, choices=ESTADOS_BRASILEIROS
     )
-    cidade = models.ForeignKey(
+    id_cidade = models.ForeignKey(
         Cidades,
         on_delete=models.PROTECT,
-        db_column="id_cidade",
         related_name="fornecedor",
         blank=False,
     )
