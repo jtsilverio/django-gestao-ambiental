@@ -2,6 +2,7 @@ from django.forms import (
     CheckboxSelectMultiple,
     ModelForm,
     ModelMultipleChoiceField,
+    Select,
     TextInput,
 )
 
@@ -20,9 +21,10 @@ class FornecedorForm(ModelForm):
     class Meta:
         model = Fornecedor
 
-        fields = ["nome", "destinacao"]
+        fields = ["nome", "estado", "cidade", "destinacao"]
         labels = {
             "nome": "Nome",
+            "estado": "Estado",
             "cidade": "Cidade",
             "destinacao": "Destinação",
         }
@@ -34,4 +36,19 @@ class FornecedorForm(ModelForm):
                     "placeholder": "Nome do Fornecedor",
                 },
             ),
+            "estado": Select(
+                attrs={
+                    "class": "form-select",
+                },
+            ),
+            "cidade": Select(
+                attrs={
+                    "class": "form-select",
+                },
+            ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["cidade"].choices = ""
+        self.fields["cidade"].widget.attrs["disabled"] = True
