@@ -7,6 +7,8 @@
             <tr>
                 <th class="align-middle border-0 rounded-start">Fornecedor</th>
                 <th class="align-middle border-0">Tipo Fornecedor</th>
+                <th class="align-middle border-0">Estado</th>
+                <th class="align-middle border-0">Cidade</th>
                 <th class="align-middle border-0">Destinação</th>
                 <th class="align-middle border-0 rounded-end"></th>
             </tr>
@@ -16,6 +18,8 @@
             <tr class="align-middle">
                 <td>{{ entry.nome }}</td>
                 <td>{{ entry.tp_fornecedor }}</td>
+                <td>{{ entry.estado}}
+                <td> {{ entry.id_cidade }}</td>
                 <td>{{ entry.destinacao.all|join:", " }}</td>
                 <td>
                     <div class="d-flex justify-content-end me-3">
