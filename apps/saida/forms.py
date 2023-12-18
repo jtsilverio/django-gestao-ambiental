@@ -5,9 +5,15 @@ from apps.saida.models import Saida
 
 
 class SaidaForm(forms.ModelForm):
-    id_fornecedor = forms.ModelChoiceField(
-        label="Fornecedor",
-        queryset=Fornecedor.objects.all(),
+    id_fornecedor_destinacao = forms.ModelChoiceField(
+        label="Fornecedor Destinação",
+        queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="DFR"),
+        widget=forms.Select(attrs={"class": "form-select"}),
+    )
+
+    id_fornecedor_transporte = forms.ModelChoiceField(
+        label="Fornecedor Transporte",
+        queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="TR"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
@@ -19,8 +25,9 @@ class SaidaForm(forms.ModelForm):
             "id_cluster",
             "id_tp_residuos",
             "peso",
-            "id_fornecedor",
+            "id_fornecedor_destinacao",
             "id_destinacao",
+            "id_fornecedor_transporte",
             "receita",
             "custo",
             "n_evidencia",
@@ -32,8 +39,9 @@ class SaidaForm(forms.ModelForm):
             "id_cluster": "Cluster",
             "id_tp_residuos": "Tipo de Resíduo",
             "peso": "Peso",
-            "id_fornecedor": "Fornecedor",
+            "id_fornecedor_destinacao": "Fornecedor Destinação",
             "id_destinacao": "Destinação",
+            "id_fornecedor_transporte": "Fornecedor Transporte",
             "receita": "Receita",
             "custo": "Custo",
             "n_evidencia": "Nº Evidência",
@@ -60,11 +68,14 @@ class SaidaForm(forms.ModelForm):
             "peso": forms.NumberInput(
                 attrs={"class": "form-control", "placeholder": "Localidade"},
             ),
-            "id_fornecedor": forms.Select(
-                attrs={"class": "form-select", "placeholder": "Fornecedor"}
+            "id_fornecedor_destinacao": forms.Select(
+                attrs={"class": "form-select", "placeholder": "Fornecedor Destinação"}
             ),
             "id_destinacao": forms.Select(
                 attrs={"class": "form-select", "placeholder": "Destinação"}
+            ),
+            "id_fornecedor_transporte": forms.Select(
+                attrs={"class": "form-select", "placeholder": "Fornecedor Transporte"}
             ),
             "receita": forms.NumberInput(
                 attrs={"class": "form-control", "placeholder": "Receita"},

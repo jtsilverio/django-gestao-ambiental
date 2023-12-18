@@ -1,8 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
     Editar Saída
 {% endblock title %}
+
+{% block javascripts %}
+<script src="{% static 'js/destinacao_chained_select.js' %}"></script>
+{% endblock javascripts %}
 
 {% block content %}
     <section class="card border-0 shadow">
