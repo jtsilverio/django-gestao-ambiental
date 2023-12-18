@@ -1,0 +1,23 @@
+[
+    {
+        "model": "fornecedor.TipoFornecedor",
+        "pk": 1,
+        "fields": {
+            "nome": "Transporte"
+        }
+    },
+    {
+        "model": "fornecedor.TipoFornecedor",
+        "pk": 2,
+        "fields": {
+            "nome": "Destinação Final"
+        }
+    },
+    {
+        "model": "fornecedor.TipoFornecedor",
+        "pk": 3,
+        "fields": {
+            "nome": "Serviço de Terceiros"
+        }
+    }
+]
