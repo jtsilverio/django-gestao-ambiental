@@ -8,11 +8,12 @@ Saída
         <thead class="thead-light">
             <tr>
                 <th class="align-middle border-0 rounded-start">Data</th>
-                <th class="align-middle border-0">Localidade</th>
-                <th class="align-middle border-0">Classe</th>
-                <th class="align-middle border-0">Fornecedor</th>
+                <th class="align-middle border-0">Cluster</th>
+                <th class="align-middle border-0">Tipo de Resíduo</th>
+                <th class="align-middle border-0">Peso</th>
+                <th class="align-middle border-0">Fornecedor Destinação</th>
                 <th class="align-middle border-0">Destinação</th>
-                <th class="align-middle border-0">Peso (kg)</th>
+                <th class="align-middle border-0">Fornecedor Transporte</th>
                 <th class="align-middle border-0">Receita</th>
                 <th class="align-middle border-0">Custo</th>
                 <th class="align-middle border-0">Nº Evidência</th>
@@ -25,10 +26,11 @@ Saída
             <tr class="align-middle">
                 <td>{{ entry.data }}</td>
                 <td>{{ entry.id_cluster }}</td>
-                <td>{{ entry.id_classe }}</td>
-                <td>{{ entry.id_fornecedor }}</td>
-                <td>{{ entry.id_destinacao }}</td>
+                <td>{{ entry.id_tp_residuos }}</td>
                 <td>{{ entry.peso }}</td>
+                <td>{{ entry.id_fornecedor_destinacao }}</td>
+                <td>{{ entry.id_destinacao }}</td>
+                <td>{{ entry.id_fornecedor_transporte }}</td>
                 <td>{{ entry.receita }}</td>
                 <td>{{ entry.custo }}</td>
                 <td>{{ entry.n_evidencia }}</td>
