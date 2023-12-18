@@ -21,4 +21,9 @@ urlpatterns = [
         views.delete,
         name="delete",
     ),
+    path(
+        "get_destinacao/",
+        views.get_destinacao,
+        name="get_destinacao",
+    ),
 ]

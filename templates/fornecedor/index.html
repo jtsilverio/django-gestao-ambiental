@@ -17,10 +17,10 @@
             {% for entry in object_list %}
             <tr class="align-middle">
                 <td>{{ entry.nome }}</td>
-                <td>{{ entry.tp_fornecedor }}</td>
+                <td>{{ entry.id_tp_fornecedor.all|join:", " }}</td>
                 <td>{{ entry.estado}}
-                <td> {{ entry.id_cidade }}</td>
-                <td>{{ entry.destinacao.all|join:", " }}</td>
+                <td>{{ entry.id_cidade }}</td>
+                <td>{{ entry.id_destinacao.all|join:", " }}</td>
                 <td>
                     <div class="d-flex justify-content-end me-3">
                         <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">

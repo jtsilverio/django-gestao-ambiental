@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core import serializers
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -54,3 +56,23 @@ def delete(request, pk):
         messages.warning(request, f"{APP_TITLE} Excluído")
 
     return redirect(f"{APP_NAME}:index")
+
+
+def get_destinacao(request):
+    id_fornecedor = request.GET.get("id")
+    fornecedor = get_object_or_404(Model, pk=id_fornecedor)
+
+    id_destinacao = (
+        fornecedor.id_destinacao.all()
+    )  # get the queryset of the ManyToMany field
+    id_destinacao = serializers.serialize("json", id_destinacao)
+
+    # JsonResponse will automatically convert the serialized data to a JSON response
+    return JsonResponse(id_destinacao, safe=False)
+
+
+# def get_cidades(request):
+#     estado = request.GET.get("estado")
+#     cidades = Model.objects.filter(estado=estado)
+#     cidades = serializers.serialize("json", cidades)
+#     return JsonResponse(cidades, safe=False)

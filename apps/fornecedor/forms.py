@@ -7,13 +7,20 @@ from django.forms import (
 )
 
 from apps.destinacao.models import Destinacao
-from apps.fornecedor.models import Fornecedor
+from apps.fornecedor.models import Fornecedor, TipoFornecedor
 
 
 class FornecedorForm(ModelForm):
-    destinacao = ModelMultipleChoiceField(
+    id_destinacao = ModelMultipleChoiceField(
         label="Destinação",
         queryset=Destinacao.objects.all(),
+        widget=CheckboxSelectMultiple(attrs={"class": "form-check-input mb-0"}),
+        required=False,
+    )
+
+    id_tp_fornecedor = ModelMultipleChoiceField(
+        label="Tipo de Fornecedor",
+        queryset=TipoFornecedor.objects.all(),
         widget=CheckboxSelectMultiple(attrs={"class": "form-check-input mb-0"}),
         required=False,
     )
@@ -21,12 +28,13 @@ class FornecedorForm(ModelForm):
     class Meta:
         model = Fornecedor
 
-        fields = ["nome", "estado", "id_cidade", "destinacao"]
+        fields = ["nome", "id_tp_fornecedor", "estado", "id_cidade", "id_destinacao"]
         labels = {
             "nome": "Nome",
+            "id_tp_fornecedor": "Tipo de Fornecedor",
             "estado": "Estado",
             "id_cidade": "Cidade",
-            "destinacao": "Destinação",
+            "id_destinacao": "Destinação",
         }
 
         widgets = {
