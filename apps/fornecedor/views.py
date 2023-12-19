@@ -69,10 +69,3 @@ def get_destinacao(request):
 
     # JsonResponse will automatically convert the serialized data to a JSON response
     return JsonResponse(id_destinacao, safe=False)
-
-
-# def get_cidades(request):
-#     estado = request.GET.get("estado")
-#     cidades = Model.objects.filter(estado=estado)
-#     cidades = serializers.serialize("json", cidades)
-#     return JsonResponse(cidades, safe=False)
