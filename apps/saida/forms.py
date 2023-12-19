@@ -6,13 +6,13 @@ from apps.saida.models import Saida
 
 class SaidaForm(forms.ModelForm):
     id_fornecedor_destinacao = forms.ModelChoiceField(
-        label="Fornecedor Destinação",
+        label="Destinadora",
         queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="DFR"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
     id_fornecedor_transporte = forms.ModelChoiceField(
-        label="Fornecedor Transporte",
+        label="Transportadora",
         queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="TR"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
@@ -24,10 +24,10 @@ class SaidaForm(forms.ModelForm):
             "data",
             "id_cluster",
             "id_tp_residuos",
-            "peso",
             "id_fornecedor_destinacao",
             "id_destinacao",
             "id_fornecedor_transporte",
+            "peso",
             "receita",
             "custo",
             "n_evidencia",
