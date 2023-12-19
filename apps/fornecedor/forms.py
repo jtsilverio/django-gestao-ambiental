@@ -8,9 +8,10 @@ from django.forms import (
 
 from apps.destinacao.models import Destinacao
 from apps.fornecedor.models import Fornecedor, TipoFornecedor
+from apps.utils.models import EmptyCidadeMixin
 
 
-class FornecedorForm(ModelForm):
+class FornecedorForm(EmptyCidadeMixin, ModelForm):
     id_destinacao = ModelMultipleChoiceField(
         label="Destinação",
         queryset=Destinacao.objects.all(),
@@ -28,12 +29,12 @@ class FornecedorForm(ModelForm):
     class Meta:
         model = Fornecedor
 
-        fields = ["nome", "id_tp_fornecedor", "estado", "id_cidade", "id_destinacao"]
+        fields = ["nome", "estado", "id_cidade", "id_tp_fornecedor", "id_destinacao"]
         labels = {
             "nome": "Nome",
-            "id_tp_fornecedor": "Tipo de Fornecedor",
             "estado": "Estado",
             "id_cidade": "Cidade",
+            "id_tp_fornecedor": "Tipo de Fornecedor",
             "id_destinacao": "Destinação",
         }
 
