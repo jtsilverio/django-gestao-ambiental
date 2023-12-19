@@ -42,7 +42,7 @@ def saida_cadastro(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Saída cadastrada")
-            return HttpResponseRedirect(reverse("saida_cadastro"))
+            return HttpResponseRedirect(reverse("saida"))
         else:
             messages.error(request, "Erro ao salvar")
     else:
