@@ -4,11 +4,11 @@
 {% load is_checkbox %}
 
 {% block title %}
-  Cadastro Fornecedor
-{% endblock %}
+  Cadastro de {{title}}/
+{% endblock title %}
 
 {% block javascripts %}
-<script src="{% static 'js/fornecedor.js' %}"></script>
+<script src="{% static 'js/cidade_chained_select.js' %}"></script>
 {% endblock javascripts %}
 
 {% block content %}
@@ -30,7 +30,7 @@
                       </div>
                       {% empty %}
                       <p>
-                        <small>Nenhuma destinacao cadastrada</small>
+                        <small>Nenhum registro cadastrado</small>
                       </p>
                     {% endfor %}
                   </div>
@@ -46,6 +46,7 @@
           </div>
         </div>
       </form>
+
     </div>
   </section>
 {% endblock %}

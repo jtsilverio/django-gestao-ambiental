@@ -16,14 +16,12 @@ class FornecedorForm(EmptyCidadeMixin, ModelForm):
         label="Destinação",
         queryset=Destinacao.objects.all(),
         widget=CheckboxSelectMultiple(attrs={"class": "form-check-input mb-0"}),
-        required=False,
     )
 
     id_tp_fornecedor = ModelMultipleChoiceField(
         label="Tipo de Fornecedor",
         queryset=TipoFornecedor.objects.all(),
         widget=CheckboxSelectMultiple(attrs={"class": "form-check-input mb-0"}),
-        required=False,
     )
 
     class Meta:

@@ -9,7 +9,7 @@ urlpatterns = [
     path(
         "cadastro/",
         views.Create.as_view(),
-        name="create",
+        name="cadastro",
     ),
     path(
         "edit/<int:pk>/",

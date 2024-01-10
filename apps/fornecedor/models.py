@@ -29,27 +29,36 @@ class TipoFornecedor(models.Model):
 
 class Fornecedor(models.Model):
     id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=50, null=False, blank=False)
+    nome = models.CharField(max_length=50, null=False, blank=False, verbose_name="Nome")
     id_tp_fornecedor = models.ManyToManyField(
         TipoFornecedor,
         db_table="fornecedor_tp_fornecedor",
         related_name="fornecedor",
         blank=False,
+        db_column="id_tp_fornecedor",
+        verbose_name="Tipo de Fornecedor",
     )
     estado = models.CharField(
-        max_length=2, null=False, blank=False, choices=ESTADOS_BRASILEIROS
+        max_length=2,
+        null=False,
+        blank=False,
+        choices=ESTADOS_BRASILEIROS,
+        verbose_name="Estado",
     )
     id_cidade = models.ForeignKey(
         Cidades,
         on_delete=models.PROTECT,
         related_name="fornecedor",
         blank=False,
+        db_column="id_cidade",
+        verbose_name="Cidade",
     )
     id_destinacao = models.ManyToManyField(
         Destinacao,
         db_table="fornecedor_destinacao",
         related_name="fornecedor",
         blank=True,
+        verbose_name="Destinação",
     )
 
     def __str__(self):
