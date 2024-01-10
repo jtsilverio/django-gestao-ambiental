@@ -38,6 +38,11 @@ class Create(SuccessMessageMixin, CreateView):
     extra_context = {"title": APP_TITLE, "app_name": APP_NAME}
     success_url = reverse_lazy(f"{APP_NAME}:index")
 
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        response.status_code = 400
+        return response
+
 
 class Edit(SuccessMessageMixin, UpdateView):
     model = Model
