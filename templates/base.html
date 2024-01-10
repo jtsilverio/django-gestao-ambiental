@@ -46,9 +46,15 @@
             </div>
         </nav>
 
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            {{ form.errors }}
+        </div>
+        {% endif %}
 
         {% block content %}
         {% endblock content %}
+
         {% include "partials/footer.html" %}
     </main>
 
