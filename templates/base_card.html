@@ -52,8 +52,15 @@
                             <i class="bi bi-plus-lg pe-2"></i>Cadastro
                         </button>
                     </a>
+
+                    <button type="button" class="btn btn-gray-100 mb-3 ms-auto" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <i class="bi bi-box-arrow-up pe-2"></i>Exportar Excel
+                    </button>
+
+                    {% include "partials/export_modal.html" %}
                 </div>
             </div>
+
 
             <!-- card body -->
             <div class="card-body">

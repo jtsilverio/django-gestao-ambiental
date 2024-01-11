@@ -1,0 +1,45 @@
+<!-- _modal.html -->
+<div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Exportar em formato Excel</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <select class="form-select" id="selectMenu" aria-label="Default select example">
+            <!-- Options will be populated here -->
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('myModal').addEventListener('show.bs.modal', function (event) {
+  // Make a request to the current page URL + /excel?ano=
+  fetch(window.location.href + '/excel?ano=')
+    .then(response => response.json())
+    .then(data => {
+      // Get the select element
+      var select = document.getElementById('selectMenu');
+
+      // Remove any existing options
+      while (select.firstChild) {
+        select.removeChild(select.firstChild);
+      }
+
+      // Add new options from the response data
+      data.forEach(item => {
+        var option = document.createElement('option');
+        option.value = item.value;
+        option.text = item.text;
+        select.appendChild(option);
+      });
+    });
+});
+</script>
