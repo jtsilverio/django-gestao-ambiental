@@ -5,7 +5,7 @@ from apps.tipo_residuos.models import TipoResiduos
 
 
 class Entrada(models.Model):
-    id_entrada = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     data = models.DateField(null=False, blank=False)
     id_tp_residuos = models.ForeignKey(
         TipoResiduos,
@@ -31,4 +31,4 @@ class Entrada(models.Model):
 
     class Meta:
         db_table = "entrada"
-        ordering = ["-id_entrada"]
+        ordering = ["-id"]

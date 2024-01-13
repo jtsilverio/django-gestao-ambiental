@@ -2,9 +2,23 @@ from django.urls import path
 
 from apps.entrada import views
 
+app_name = "entrada"
+
 urlpatterns = [
-    path("", views.entrada_index, name="entrada"),
-    path("<int:pk>/", views.EntradaEdit.as_view(), name="entrada_edit"),
-    path("cadastro/", views.entrada_cadastro, name="entrada_cadastro"),
-    path("delete/<int:pk>/", views.delete_cadastro, name="entrada_delete"),
+    path("", views.index, name="index"),
+    path(
+        "cadastro/",
+        views.Create.as_view(),
+        name="cadastro",
+    ),
+    path(
+        "edit/<int:pk>/",
+        views.Edit.as_view(),
+        name="edit",
+    ),
+    path(
+        "delete/<int:pk>/",
+        views.delete,
+        name="delete",
+    ),
 ]

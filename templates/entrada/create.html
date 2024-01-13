@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    Editar Entrada
+    Cadastro de Entrada
 {% endblock title %}
+
+{% block javascripts %}
+    <script src="{% static 'js/classe_residuo_chained_select.js' %}"></script>
+{% endblock javascripts %}
+
 
 {% block content %}
     <section class="card border-0 shadow">
@@ -17,7 +23,7 @@
                         </div>
                     {% endfor %}
                     <div class="col mt-auto">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
                     </div>
                 </div>
             </form>
