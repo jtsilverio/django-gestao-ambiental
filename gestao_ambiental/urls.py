@@ -22,7 +22,7 @@ urlpatterns = [
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
     path("admin/", admin.site.urls),
     path("entrada/", include("apps.entrada.urls", namespace="entrada")),
-    path("saida/", include("apps.saida.urls")),
+    path("saida/", include("apps.saida.urls", namespace="saida")),
     path("cluster/", include("apps.cluster.urls")),
     path("tipo_residuos/", include("apps.tipo_residuos.urls")),
     path("destinacao/", include("apps.destinacao.urls")),

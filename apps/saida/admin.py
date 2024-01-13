@@ -10,7 +10,7 @@ class SaidaAdmin(admin.ModelAdmin):
         "id_cluster",
         "id_destinacao",
         "data",
-        "peso",
+        "valor",
         "receita",
         "custo",
         "n_evidencia",

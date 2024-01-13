@@ -1,61 +1,85 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
+from django.db.models import OuterRef, Subquery
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView
 
-from apps.saida.filters import SaidaFilter
-from apps.saida.forms import SaidaForm
-from apps.saida.models import Saida
-from apps.utils import count_active_filters
+from apps.saida.filters import SaidaFilter as ModelFilter
+from apps.saida.forms import SaidaForm as ModelForm
+from apps.saida.models import Saida as Model
+from apps.tipo_residuos.models import TipoResiduos
+from apps.utils import (
+    create_filtered_context,
+    paginate_query,
+)
 
-
-def saida_index(request):
-    page_number = request.GET.get("page")
-    saida_filter = SaidaFilter(request.GET, queryset=Saida.objects.all())
-
-    saida_paginated = Paginator(saida_filter.qs, settings.PAGESIZE)
-    saida = saida_paginated.get_page(page_number)
-
-    context = {
-        "object_list": saida,
-        "filter_form": saida_filter.form,
-        "number_of_active_filters": count_active_filters(request, saida_filter),
-    }
-    return render(request, "saida/saida.html", context)
+APP_NAME = "saida"
+APP_TITLE = "Saída"
 
 
-class SaidaEdit(SuccessMessageMixin, UpdateView):
-    model = Saida
-    form_class = SaidaForm
-    template_name = "saida/saida_edit.html"
-    success_message = "Saída atualizada"
-    success_url = reverse_lazy("saida")
+def index(request):
+    model_filter = ModelFilter(request.GET, queryset=Model.objects.all())
+    referenced_tp_residuos = TipoResiduos.objects.filter(
+        id__in=model_filter.qs.values("id_tp_residuos")
+    )
+
+    # Create a subquery that gets 'classe' from referenced_tp_residuos
+    classe_subquery = referenced_tp_residuos.filter(
+        id=OuterRef("id_tp_residuos")
+    ).values("classe")[:1]
+
+    # Create a subquery that gets 'unidade_medida' from referenced_tp_residuos
+    unidade_medida_subquery = referenced_tp_residuos.filter(
+        id=OuterRef("id_tp_residuos")
+    ).values("unidade_medida")[:1]
+
+    # Annotate the queryset with the subqueries
+    annotated_qs = model_filter.qs.annotate(
+        classe=Subquery(classe_subquery),
+        unidade_medida=Subquery(unidade_medida_subquery),
+    )
+
+    # paginate the queryset
+    query_filtered = paginate_query(request, annotated_qs, settings.PAGESIZE)
+
+    # create the context with additinal info as the number of active filters, app name and title
+    context = create_filtered_context(query_filtered, model_filter, request)
+    context["title"] = APP_TITLE
+    context["app_name"] = APP_NAME
+
+    return render(request, f"{APP_NAME}/index.html", context)
 
 
-def saida_cadastro(request):
+class Create(SuccessMessageMixin, CreateView):
+    model = Model
+    form_class = ModelForm
+    template_name = f"{APP_NAME}/create.html"
+    success_message = f"{APP_TITLE} Cadastrado"
+    extra_context = {"title": APP_TITLE, "app_name": APP_NAME}
+    success_url = reverse_lazy(f"{APP_NAME}:index")
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        response.status_code = 400
+        return response
+
+
+class Edit(SuccessMessageMixin, UpdateView):
+    model = Model
+    form_class = ModelForm
+    template_name = f"{APP_NAME}/edit.html"
+    success_message = f"{APP_TITLE} Atualizado"
+    extra_context = {"title": APP_TITLE, "app_name": APP_NAME}
+    success_url = reverse_lazy(f"{APP_NAME}:index")
+
+
+def delete(request, pk):
+    entry = get_object_or_404(Model, pk=pk)
+
     if request.method == "POST":
-        form = SaidaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Saída cadastrada")
-            return HttpResponseRedirect(reverse("saida"))
-        else:
-            messages.error(request, "Erro ao salvar")
-    else:
-        form = SaidaForm()
+        entry.delete()
+        messages.warning(request, f"{APP_TITLE} Excluído")
 
-    return render(request, "saida/saida_cadastro.html", {"form": form})
-
-
-def saida_delete(request, pk):
-    saida = get_object_or_404(Saida, pk=pk)
-
-    if request.method == "POST":
-        saida.delete()
-        messages.warning(request, "Saída excluída")
-
-    return redirect("saida")
+    return redirect(f"{APP_NAME}:index")
