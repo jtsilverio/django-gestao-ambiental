@@ -64,5 +64,6 @@ def get_class(request):
     id_tp_residuos = request.GET.get("id_tp_residuos")
     tp_residuos = get_object_or_404(Model, pk=id_tp_residuos)
     classe = tp_residuos.classe
+    unidade_medida = tp_residuos.unidade_medida
 
-    return JsonResponse({"classe": classe})
+    return JsonResponse({"classe": classe, "unidade_medida": unidade_medida})

@@ -30,8 +30,16 @@ def index(request):
         id=OuterRef("id_tp_residuos")
     ).values("classe")[:1]
 
-    # Annotate the queryset with the subquery
-    annotated_qs = model_filter.qs.annotate(classe=Subquery(classe_subquery))
+    # Create a subquery that gets 'unidade_medida' from referenced_tp_residuos
+    unidade_medida_subquery = referenced_tp_residuos.filter(
+        id=OuterRef("id_tp_residuos")
+    ).values("unidade_medida")[:1]
+
+    # Annotate the queryset with the subqueries
+    annotated_qs = model_filter.qs.annotate(
+        classe=Subquery(classe_subquery),
+        unidade_medida=Subquery(unidade_medida_subquery),
+    )
 
     # paginate the queryset
     query_filtered = paginate_query(request, annotated_qs, settings.PAGESIZE)
