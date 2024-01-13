@@ -35,7 +35,7 @@ class SaidaFilter(django_filters.FilterSet):
     )
 
     id_tp_residuos = django_filters.ModelMultipleChoiceFilter(
-        label="Classe",
+        label="Tipo de Resíduo",
         queryset=TipoResiduos.objects.all(),
         widget=CheckboxSelectMultiple(attrs={"class": "form-check-input"}),
     )

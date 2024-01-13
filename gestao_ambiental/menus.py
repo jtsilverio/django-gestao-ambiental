@@ -14,7 +14,7 @@ MENU_SIDEBAR = [
             },
             {
                 "name": "Saída",
-                "url": "saida",
+                "url": "saida:index",
             },
         ],
     },

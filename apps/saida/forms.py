@@ -17,6 +17,30 @@ class SaidaForm(forms.ModelForm):
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
+    classe_residuo = forms.CharField(
+        required=False,
+        label="Classe",
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "",
+                "disabled": "disabled",
+            }
+        ),
+    )
+
+    unidade_medida = forms.CharField(
+        required=False,
+        label="Unid. de Medida",
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "",
+                "disabled": "disabled",
+            }
+        ),
+    )
+
     class Meta:
         model = Saida
 
@@ -24,10 +48,12 @@ class SaidaForm(forms.ModelForm):
             "data",
             "id_cluster",
             "id_tp_residuos",
+            "classe_residuo",
             "id_fornecedor_destinacao",
             "id_destinacao",
             "id_fornecedor_transporte",
-            "peso",
+            "valor",
+            "unidade_medida",
             "receita",
             "custo",
             "n_evidencia",
@@ -38,7 +64,9 @@ class SaidaForm(forms.ModelForm):
             "data": "Data de Saída",
             "id_cluster": "Cluster",
             "id_tp_residuos": "Tipo de Resíduo",
-            "peso": "Peso",
+            "classe_residuo": "Classe",
+            "valor": "Valor",
+            "unidade_medida": "Unidade de Medida",
             "id_fornecedor_destinacao": "Fornecedor Destinação",
             "id_destinacao": "Destinação",
             "id_fornecedor_transporte": "Fornecedor Transporte",
@@ -65,7 +93,7 @@ class SaidaForm(forms.ModelForm):
             "id_tp_residuos": forms.Select(
                 attrs={"class": "form-select", "placeholder": "Tipo Resíduo"}
             ),
-            "peso": forms.NumberInput(
+            "valor": forms.NumberInput(
                 attrs={"class": "form-control", "placeholder": "Localidade"},
             ),
             "id_fornecedor_destinacao": forms.Select(

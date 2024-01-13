@@ -2,9 +2,23 @@ from django.urls import path
 
 from apps.saida import views
 
+app_name = "saida"
+
 urlpatterns = [
-    path("", views.saida_index, name="saida"),
-    path("cadastro/", views.saida_cadastro, name="saida_cadastro"),
-    path("<int:pk>/", views.SaidaEdit.as_view(), name="saida_edit"),
-    path("delete/<int:pk>/", views.saida_delete, name="saida_delete"),
+    path("", views.index, name="index"),
+    path(
+        "cadastro/",
+        views.Create.as_view(),
+        name="cadastro",
+    ),
+    path(
+        "edit/<int:pk>/",
+        views.Edit.as_view(),
+        name="edit",
+    ),
+    path(
+        "delete/<int:pk>/",
+        views.delete,
+        name="delete",
+    ),
 ]
