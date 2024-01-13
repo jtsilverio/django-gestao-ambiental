@@ -18,7 +18,7 @@ class Entrada(models.Model):
         models.DO_NOTHING,
         db_column="id_cluster",
     )
-    peso = models.DecimalField(
+    valor = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         default=0,

@@ -16,6 +16,18 @@ class EntradaForm(ModelForm):
         ),
     )
 
+    unidade_medida = CharField(
+        required=False,
+        label="Unid. de Medida",
+        widget=TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "",
+                "disabled": "disabled",
+            }
+        ),
+    )
+
     class Meta:
         model = Entrada
 
@@ -24,14 +36,16 @@ class EntradaForm(ModelForm):
             "id_cluster",
             "id_tp_residuos",
             "classe_residuo",
-            "peso",
+            "valor",
+            "unidade_medida",
         ]
 
         labels = {
             "data": "Data de Entrada",
             "id_cluster": "Cluster",
             "id_tp_residuos": "Tipo de Resíduo",
-            "peso": "Peso",
+            "valor": "Valor",
+            "unidade_medida": "Unidade de Medida",
         }
 
         widgets = {
@@ -48,7 +62,7 @@ class EntradaForm(ModelForm):
             "id_tp_residuos": Select(
                 attrs={"class": "form-select", "placeholder": "Tipo Resíduo"}
             ),
-            "peso": NumberInput(
+            "valor": NumberInput(
                 attrs={"class": "form-control", "placeholder": "Localidade"},
             ),
         }
