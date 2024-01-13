@@ -10,7 +10,7 @@ MENU_SIDEBAR = [
         "submenu": [
             {
                 "name": "Entrada",
-                "url": "entrada",
+                "url": "entrada:index",
             },
             {
                 "name": "Saída",

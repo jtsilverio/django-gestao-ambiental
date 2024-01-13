@@ -1,62 +1,77 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
+from django.db.models import OuterRef, Subquery
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView
 
-from apps.entrada.filters import EntradaFilter
-from apps.entrada.forms import EntradaForm
-from apps.entrada.models import Entrada
-from apps.utils import count_active_filters
+from apps.entrada.filters import EntradaFilter as ModelFilter
+from apps.entrada.forms import EntradaForm as ModelForm
+from apps.entrada.models import Entrada as Model
+from apps.tipo_residuos.models import TipoResiduos
+from apps.utils import (
+    create_filtered_context,
+    paginate_query,
+)
 
-PAGESIZE = 15
-
-
-def entrada_index(request):
-    page_number = request.GET.get("page")
-    entradas_filter = EntradaFilter(request.GET, queryset=Entrada.objects.all())
-
-    entradas_paginated = Paginator(entradas_filter.qs, PAGESIZE)
-    entradas = entradas_paginated.get_page(page_number)
-
-    context = {
-        "object_list": entradas,
-        "filter_form": entradas_filter.form,
-        "number_of_active_filters": count_active_filters(request, entradas_filter),
-    }
-    return render(request, "entrada/entrada.html", context)
+APP_NAME = "entrada"
+APP_TITLE = "Entrada"
 
 
-class EntradaEdit(SuccessMessageMixin, UpdateView):
-    model = Entrada
-    form_class = EntradaForm
-    template_name = "entrada/entrada_edit.html"
-    success_message = "Entrada atualizada"
-    success_url = reverse_lazy("entrada")
+def index(request):
+    model_filter = ModelFilter(request.GET, queryset=Model.objects.all())
+    referenced_tp_residuos = TipoResiduos.objects.filter(
+        id__in=model_filter.qs.values("id_tp_residuos")
+    )
+
+    # Create a subquery that gets 'classe' from referenced_tp_residuos
+    classe_subquery = referenced_tp_residuos.filter(
+        id=OuterRef("id_tp_residuos")
+    ).values("classe")[:1]
+
+    # Annotate the queryset with the subquery
+    annotated_qs = model_filter.qs.annotate(classe=Subquery(classe_subquery))
+
+    # paginate the queryset
+    query_filtered = paginate_query(request, annotated_qs, settings.PAGESIZE)
+
+    # create the context with additinal info as the number of active filters, app name and title
+    context = create_filtered_context(query_filtered, model_filter, request)
+    context["title"] = APP_TITLE
+    context["app_name"] = APP_NAME
+
+    return render(request, f"{APP_NAME}/index.html", context)
 
 
-def entrada_cadastro(request):
+class Create(SuccessMessageMixin, CreateView):
+    model = Model
+    form_class = ModelForm
+    template_name = f"{APP_NAME}/create.html"
+    success_message = f"{APP_TITLE} Cadastrado"
+    extra_context = {"title": APP_TITLE, "app_name": APP_NAME}
+    success_url = reverse_lazy(f"{APP_NAME}:index")
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        response.status_code = 400
+        return response
+
+
+class Edit(SuccessMessageMixin, UpdateView):
+    model = Model
+    form_class = ModelForm
+    template_name = f"{APP_NAME}/edit.html"
+    success_message = f"{APP_TITLE} Atualizado"
+    extra_context = {"title": APP_TITLE, "app_name": APP_NAME}
+    success_url = reverse_lazy(f"{APP_NAME}:index")
+
+
+def delete(request, pk):
+    entry = get_object_or_404(Model, pk=pk)
+
     if request.method == "POST":
-        form = EntradaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Entrada salva com sucesso")
-            return HttpResponseRedirect(reverse("entrada_cadastro"))
-        else:
-            messages.error(request, "Erro ao salvar")
-    else:
-        form = EntradaForm()
+        entry.delete()
+        messages.warning(request, f"{APP_TITLE} Excluído")
 
-    return render(request, "entrada/entrada_cadastro.html", {"form": form})
-
-
-def delete_cadastro(request, pk):
-    entrada = get_object_or_404(Entrada, pk=pk)
-
-    if request.method == "POST":
-        entrada.delete()
-        messages.warning(request, "Entrada excluída com sucesso")
-
-    return redirect("entrada")
+    return redirect(f"{APP_NAME}:index")

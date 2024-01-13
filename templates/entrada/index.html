@@ -1,7 +1,12 @@
-{% extends "base_card.html" %}
-{% block title %}
-Entrada
-{% endblock title %}
+{% extends 'base_card.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block javascripts %}
+    <script src="{% static 'js/classe_residuo_chained_select.js' %}"></script>
+{% endblock javascripts %}
+
 {% block content %}
 <div class="table-responsive">
     <table class="table table-centered mb-0 rounded table-sm">
@@ -9,6 +14,7 @@ Entrada
             <tr>
                 <th class="align-middle border-0 rounded-start">Data</th>
                 <th class="align-middle border-0">Localidade</th>
+                <th class="align-middle border-0">Tipo Resíduo</th>
                 <th class="align-middle border-0">Classe</th>
                 <th class="align-middle border-0">Peso (kg)</th>
                 <th class="align-middle border-0 rounded-end"></th>
@@ -19,20 +25,20 @@ Entrada
             <tr class="align-middle">
                 <td>{{ entry.data }}</td>
                 <td>{{ entry.id_cluster }}</td>
-                <td>{{ entry.id_classe }}</td>
+                <td>{{ entry.id_tp_residuos }}</td>
+                <td>{{ entry.classe }}</td>
                 <td>{{ entry.peso }}</td>
                 <td>
                     <div class="d-flex justify-content-end me-3">
-                        <a href="{% url 'entrada_edit' pk=entry.id_entrada %}" title="Editar">
+                        <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">
                             <button class="btn btn-sm shadow-none border-0">
                                 <i class="bi bi-pencil-square text-secondary"></i>
                             </button>
                         </a>
                         <form onsubmit="return confirm('Confirmar deleção?');"
-                            action="{% url 'entrada_delete' pk=entry.id_entrada %}" method="POST" value="delete"
-                            title="Deletar">
+                            action="{% url app_name|add:':delete' pk=entry.id %}" method="POST" value="delete">
                             {% csrf_token %}
-                            <button class="btn btn-sm shadow-none border-0">
+                            <button class="btn btn-sm shadow-none border-0" title="Deletar">
                                 <i class="bi bi-x-circle text-danger"></i>
                             </button>
                         </form>
@@ -41,7 +47,7 @@ Entrada
             </tr>
             {% empty %}
             <tr>
-                <td colspan="5">Nenhuma entrada cadastrada</td>
+                <td colspan="5">Nenhum Cadastro</td>
             </tr>
             {% endfor %}
         </tbody>

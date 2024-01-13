@@ -21,7 +21,7 @@ clean_migrations: clean
 	-rm db.sqlite3
 
 
-migrations: clean_migrations
+migrations:
 	$(PYTHON_INTERPRETER) manage.py makemigrations
 	$(PYTHON_INTERPRETER) manage.py migrate
 	$(PYTHON_INTERPRETER) manage.py loaddata initial_data
