@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "apps.ac_extintores.apps.ACExtintoresConfig",
     "apps.gas_sf6_nf3.apps.GasSF6NF3Config",
     "apps.cidades.apps.CidadesConfig",
+    "apps.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
