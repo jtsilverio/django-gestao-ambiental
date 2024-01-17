@@ -35,5 +35,6 @@ urlpatterns = [
     path("ac_extintores/", include("apps.ac_extintores.urls", namespace="ac_extintores")),
     path("gas_sf6_nf3/", include("apps.gas_sf6_nf3.urls", namespace="gas_sf6_nf3")),
     path("cidades/", include("apps.cidades.urls", namespace="cidades")),
+    path("users/", include("apps.users.urls", namespace="users")),
 ]
 # fmt: on
