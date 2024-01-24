@@ -12,11 +12,11 @@
   </ul>
 
   {% if form.non_field_errors %}
-    {{ form.non_field_errors }}
+    {% for non_field_error in form.non_field_errors %}
+        {{ non_field_error|escape }}
+    {% endfor %}
   {% endif %}
 
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endif %}
