@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "apps.ac_extintores.apps.ACExtintoresConfig",
     "apps.gas_sf6_nf3.apps.GasSF6NF3Config",
     "apps.cidades.apps.CidadesConfig",
+    "apps.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_plotly_dash.middleware.BaseMiddleware",
+    "middlewares.login_required.LoginRequiredMiddleware",
 ]
 
 ROOT_URLCONF = "gestao_ambiental.urls"
@@ -98,8 +100,10 @@ TEMPLATES = [
             "libraries": {
                 "is_checkbox": "templatetags.is_checkbox",
                 "page_parser": "templatetags.page_parser",
-                "load_menu": "templatetags.load_menu",
+                "load_sidebar": "templatetags.load_sidebar",
                 "split": "templatetags.split",
+                "project_version": "templatetags.project_version",
+                "django_version": "templatetags.django_version",
             },
         },
     },
@@ -186,3 +190,4 @@ PAGESIZE = 15
 # to allow plotly dash to serve assets
 # https://django-plotly-dash.readthedocs.io/en/latest/installation.html
 X_FRAME_OPTIONS = "SAMEORIGIN"
+LOGIN_URL = "/users/login/"

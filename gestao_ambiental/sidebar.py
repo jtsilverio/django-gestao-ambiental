@@ -72,8 +72,8 @@ MENU_SIDEBAR = [
     },
     {"name": "div"},
     {
-        "name": "Admin",
-        "url": "admin:index",
-        "icon": "bi bi-gear-fill",
+        "name": "Logout",
+        "url": "users:logout",
+        "icon": "bi bi-door-closed",
     },
 ]

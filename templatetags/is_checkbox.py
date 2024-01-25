@@ -8,4 +8,12 @@ register = template.Library()
 
 @register.filter(name="is_multiple_choice")
 def is_multiple_choice(field):
+    """Template filter to check if a form field is a CheckboxSelectMultiple.
+
+    Args:
+        field (forms.Field): Django form field.
+
+    Returns:
+        bool: True if the field's widget is CheckboxSelectMultiple, False otherwise.
+    """
     return isinstance(field.field.widget, CheckboxSelectMultiple)
