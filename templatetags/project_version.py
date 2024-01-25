@@ -1,6 +1,6 @@
 from django import template
 
-from gestao_ambiental import __version__
+from gestao_ambiental.version import __version__
 
 register = template.Library()
 
