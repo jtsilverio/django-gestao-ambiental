@@ -7,13 +7,13 @@ from apps.saida.models import Saida
 class SaidaForm(forms.ModelForm):
     id_fornecedor_destinacao = forms.ModelChoiceField(
         label="Destinadora",
-        queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="DFR"),
+        queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="Destinação Final"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
     id_fornecedor_transporte = forms.ModelChoiceField(
         label="Transportadora",
-        queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="TR"),
+        queryset=Fornecedor.objects.filter(id_tp_fornecedor__nome="Transporte"),
         widget=forms.Select(attrs={"class": "form-select"}),
     )
 
