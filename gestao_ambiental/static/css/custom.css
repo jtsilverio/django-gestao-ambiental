@@ -1,0 +1,13 @@
+.btn-icon-only {
+    width: 2.575rem;
+    height: 2.575rem;
+    padding: 0;
+    display: flex;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+}

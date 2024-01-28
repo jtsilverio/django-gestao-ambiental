@@ -1,0 +1,39 @@
+<!-- NAVBAR -->
+<nav class="navbar navbar-top navbar-expand navbar-dark pt-2">
+    <div class="container-fluid px-0">
+        <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
+            <div class="navbar-nav align-items-center">
+                <div>
+                    <button id="sidebar-toggle" class="sidebar-toggle btn btn-icon-only shadow-none">
+                        <svg class="toggle-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <div>
+                    <p class="fs-4 mt-0 mb-0 mx-2">
+                        {{ title }}
+                    </p>
+                </div>
+            </div>
+
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item dropdown ms-lg-3">
+                    <a class="nav-link px-0 py-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="sidebar-toggle shadow-none btn btn-light pt-1">
+                            <span class="mb-0 font-small fw-bold text-gray-900">
+                                <i class="bi bi-person-fill me-1"></i>
+                                {{ request.user.username }}
+                            </span>
+                        </button>
+                    </a>
+
+                    <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
+                        <a class="dropdown-item d-flex align-items-center" href="{% url 'users:logout' %}">
+                            <i class="bi bi-door-closed-fill me-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
