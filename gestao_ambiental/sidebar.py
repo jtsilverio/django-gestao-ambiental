@@ -72,8 +72,8 @@ MENU_SIDEBAR = [
     },
     {"name": "div"},
     {
-        "name": "Logout",
-        "url": "users:logout",
-        "icon": "bi bi-door-closed",
+        "name": "Novo Usuário",
+        "url": "users:create",
+        "icon": "bi bi-person-fill-add",
     },
 ]

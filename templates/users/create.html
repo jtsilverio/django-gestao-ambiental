@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<section class="card border-0 shadow">
+
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="row g-2 mt-2">
+                    <div class=" col-md-3">
+                        <label class="form-label" for="{{ form.username.id_for_label }}">Usuário</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="bi bi-person-fill"></i>
+                            </span>
+                            {{ form.username }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label" for="{{ form.email.id_for_label }}">Email</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope-at-fill"></i>
+                            </span>
+                            {{ form.email }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label" for="{{ form.password1.id_for_label }}">Senha</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="bi bi-lock-fill"></i>
+                            </span>
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label" for="{{ form.password2.id_for_label }}">Confirmar Senha</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="bi bi-lock-fill"></i>
+                            </span>
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-gray-800 mt-2">Cadastrar</button>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}
