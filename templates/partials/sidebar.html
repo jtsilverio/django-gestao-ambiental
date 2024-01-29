@@ -76,6 +76,7 @@
                         <li
                             class="nav-item {% if request.resolver_match.url_name == subitem.url %}active show{% endif %}">
                             <a href="{% url subitem.url %}" class="nav-link">
+                                <span class="sidebar-text-contracted">{{ subitem.name|slice:":1" }}</span>
                                 <span class="sidebar-text">{{ subitem.name }}</span>
                             </a>
                         </li>
