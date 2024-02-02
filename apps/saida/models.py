@@ -14,7 +14,7 @@ class Saida(models.Model):
     id_tp_residuos = models.ForeignKey(
         TipoResiduos, models.DO_NOTHING, db_column="id_tp_residuos"
     )
-    valor = models.DecimalField(
+    quantidade = models.DecimalField(
         max_digits=10, decimal_places=2, default=0, null=False, blank=False
     )
     id_fornecedor_destinacao = models.ForeignKey(
@@ -38,15 +38,13 @@ class Saida(models.Model):
     custo = models.DecimalField(
         max_digits=10, decimal_places=2, default=0, null=False, blank=True
     )
-    n_evidencia = models.CharField(max_length=50)
-    cdf = models.CharField(
-        max_length=50,
-        blank=True,
-        default="",
+    cdf = models.FileField(upload_to="saida/cdf/", null=True, blank=True, default=None)
+    evidencia = models.FileField(
+        upload_to="saida/evidencia/", null=True, blank=True, default=None
     )
 
     def __str__(self):
-        return f"ID:{self.id_saida}"
+        return f"ID:{self.id}"
 
     class Meta:
         db_table = "saida"

@@ -2,31 +2,31 @@
 {% load static %}
 
 {% block title %}
-    Editar Saída
+Editar Saída
 {% endblock title %}
 
 {% block javascripts %}
-    <script src="{% static 'js/destinacao_chained_select.js' %}"></script>
-    <script src="{% static 'js/classe_residuo_chained_select.js' %}"></script>
+<script src="{% static 'js/destinacao_chained_select.js' %}"></script>
+<script src="{% static 'js/classe_residuo_chained_select.js' %}"></script>
 {% endblock javascripts %}
 
 {% block content %}
-    <section class="card border-0 shadow">
-        <div class="card-body">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="row g-2">
-                    {% for field in form %}
-                        <div class="col">
-                            {{ field.label_tag }}
-                            {{ field }}
-                        </div>
-                    {% endfor %}
-                    <div class="col mt-auto">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </div>
+<section class="card border-0 shadow">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-2">
+                {% for field in form %}
+                <div class="col">
+                    {{ field.label_tag }}
+                    {{ field }}
                 </div>
-            </form>
-        </div>
-    </section>
+                {% endfor %}
+                <div class="col mt-auto">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
 {% endblock content %}

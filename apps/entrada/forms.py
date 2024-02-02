@@ -36,7 +36,7 @@ class EntradaForm(ModelForm):
             "id_cluster",
             "id_tp_residuos",
             "classe_residuo",
-            "valor",
+            "quantidade",
             "unidade_medida",
         ]
 
@@ -44,7 +44,7 @@ class EntradaForm(ModelForm):
             "data": "Data de Entrada",
             "id_cluster": "Cluster",
             "id_tp_residuos": "Tipo de Resíduo",
-            "valor": "Valor",
+            "quantidade": "Quantidade",
             "unidade_medida": "Unidade de Medida",
         }
 
@@ -62,7 +62,7 @@ class EntradaForm(ModelForm):
             "id_tp_residuos": Select(
                 attrs={"class": "form-select", "placeholder": "Tipo Resíduo"}
             ),
-            "valor": NumberInput(
-                attrs={"class": "form-control", "placeholder": "Localidade"},
+            "quantidade": NumberInput(
+                attrs={"class": "form-control"},
             ),
         }

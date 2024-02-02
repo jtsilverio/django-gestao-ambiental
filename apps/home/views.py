@@ -71,14 +71,14 @@ def monthly_lineplot(monthly_data):
                 "tipo": key[0],
                 "ano": key[1],
                 "mes": key[2],
-                "peso": sum(item["peso"] for item in group),
+                "quantidade": sum(item["quantidade"] for item in group),
             }
         )
 
     # Create traces
     trace_entrada = go.Scatter(
         x=[d["mes"] for d in result if d["tipo"] == "entrada"],
-        y=[d["peso"] for d in result if d["tipo"] == "entrada"],
+        y=[d["quantidade"] for d in result if d["tipo"] == "entrada"],
         mode="markers+lines",
         name="entrada",
         line=dict(color="#31316A", shape="spline", width=5),
@@ -87,7 +87,7 @@ def monthly_lineplot(monthly_data):
 
     trace_saida = go.Scatter(
         x=[d["mes"] for d in result if d["tipo"] == "saida"],
-        y=[d["peso"] for d in result if d["tipo"] == "saida"],
+        y=[d["quantidade"] for d in result if d["tipo"] == "saida"],
         mode="markers+lines",
         name="saida",
         line=dict(color="#F3C78D", shape="spline", width=5),

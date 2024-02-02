@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -36,5 +38,5 @@ urlpatterns = [
     path("gas_sf6_nf3/", include("apps.gas_sf6_nf3.urls", namespace="gas_sf6_nf3")),
     path("cidades/", include("apps.cidades.urls", namespace="cidades")),
     path("users/", include("apps.users.urls", namespace="users")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # fmt: on
