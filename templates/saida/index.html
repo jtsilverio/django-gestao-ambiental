@@ -1,69 +1,71 @@
 {% extends 'base_card.html' %}
 {% load static %}
-
-{% block title %}{{title}}{% endblock %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block javascripts %}
     <script src="{% static 'js/classe_residuo_chained_select.js' %}"></script>
 {% endblock javascripts %}
-
 {% block content %}
-<div class="table-responsive">
-    <table class="table table-centered mb-0 rounded table-sm">
-        <thead class="thead-light">
-            <tr>
-                <th class="align-middle border-0 rounded-start">Data</th>
-                <th class="align-middle border-0">Cluster</th>
-                <th class="align-middle border-0">Tipo de Resíduo</th>
-                <th class="align-middle border-0">Valor</th>
-                <th class="align-middle border-0">Unid. Medida</th>
-                <th class="align-middle border-0">Fornecedor Destinação</th>
-                <th class="align-middle border-0">Destinação</th>
-                <th class="align-middle border-0">Fornecedor Transporte</th>
-                <th class="align-middle border-0">Receita</th>
-                <th class="align-middle border-0">Custo</th>
-                <th class="align-middle border-0">Nº Evidência</th>
-                <th class="align-middle border-0">CDF</th>
-                <th class="align-middle border-0 rounded-end"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in object_list %}
-            <tr class="align-middle">
-                <td>{{ entry.data }}</td>
-                <td>{{ entry.id_cluster }}</td>
-                <td>{{ entry.id_tp_residuos }}</td>
-                <td>{{ entry.valor }} {{ entry.unidade_medida }}</td>
-                <td>{{ entry.id_fornecedor_destinacao }}</td>
-                <td>{{ entry.id_destinacao }}</td>
-                <td>{{ entry.id_fornecedor_transporte }}</td>
-                <td>{{ entry.receita }}</td>
-                <td>{{ entry.custo }}</td>
-                <td>{{ entry.n_evidencia }}</td>
-                <td>{{ entry.cdf }}</td>
-                <td>
-                    <div class="d-flex justify-content-end me-3">
-                        <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">
-                            <button class="btn btn-sm shadow-none border-0">
-                                <i class="bi bi-pencil-square text-secondary"></i>
-                            </button>
-                        </a>
-                        <form onsubmit="return confirm('Confirmar deleção?');"
-                            action="{% url app_name|add:':delete' pk=entry.id %}" method="POST" value="delete">
-                            {% csrf_token %}
-                            <button class="btn btn-sm shadow-none border-0" title="Deletar">
-                                <i class="bi bi-x-circle text-danger"></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5">Nenhum Cadastro</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+    <div class="table-responsive">
+        <table class="table table-centered mb-0 rounded table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th class="align-middle border-0 rounded-start">Data</th>
+                    <th class="align-middle border-0">Cluster</th>
+                    <th class="align-middle border-0">Tipo de Resíduo</th>
+                    <th class="align-middle border-0">Destinadora</th>
+                    <th class="align-middle border-0">Destinação</th>
+                    <th class="align-middle border-0">Transportadora</th>
+                    <th class="align-middle border-0">Quantidade</th>
+                    <th class="align-middle border-0">Receita</th>
+                    <th class="align-middle border-0">Custo</th>
+                    <th class="align-middle border-0">CDF</th>
+                    <th class="align-middle border-0">Evidência</th>
+                    <th class="align-middle border-0 rounded-end"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in object_list %}
+                    <tr class="align-middle">
+                        <td>{{ entry.data }}</td>
+                        <td>{{ entry.id_cluster }}</td>
+                        <td>{{ entry.id_tp_residuos }}</td>
+                        <td>{{ entry.id_fornecedor_destinacao }}</td>
+                        <td>{{ entry.id_destinacao }}</td>
+                        <td>{{ entry.id_fornecedor_transporte }}</td>
+                        <td>{{ entry.quantidade }} {{ entry.unidade_medida }}</td>
+                        <td>{{ entry.receita }}</td>
+                        <td>{{ entry.custo }}</td>
+                        <td>
+                            <a href="{{ entry.cdf.url }}"><small><i class="bi bi-file-earmark me-1"></i>CDF</small></a>
+                        </td>
+                        <td>
+                            <a href="{{ entry.evidencia.url }}"><small><i class="bi bi-file-earmark me-1"></i>Evidência</small></a>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-end me-3">
+                                <a href="{% url app_name|add:':edit' pk=entry.id %}" title="Editar">
+                                    <button class="btn btn-sm shadow-none border-0">
+                                        <i class="bi bi-pencil-square text-secondary"></i>
+                                    </button>
+                                </a>
+                                <form onsubmit="return confirm('Confirmar deleção?');"
+                                      action="{% url app_name|add:':delete' pk=entry.id %}"
+                                      method="POST"
+                                      value="delete">
+                                    {% csrf_token %}
+                                    <button class="btn btn-sm shadow-none border-0" title="Deletar">
+                                        <i class="bi bi-x-circle text-danger"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">Nenhum Cadastro</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}

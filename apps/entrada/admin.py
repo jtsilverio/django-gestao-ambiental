@@ -9,7 +9,7 @@ class EntradaAdmin(admin.ModelAdmin):
         "id_tp_residuos",
         "id_cluster",
         "data",
-        "valor",
+        "quantidade",
     ]
     list_filter = ["id_tp_residuos", "id_cluster", "data"]
     search_fields = ["id_tp_residuos__nome", "id_cluster__nome", "data"]

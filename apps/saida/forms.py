@@ -52,12 +52,12 @@ class SaidaForm(forms.ModelForm):
             "id_fornecedor_destinacao",
             "id_destinacao",
             "id_fornecedor_transporte",
-            "valor",
+            "quantidade",
             "unidade_medida",
             "receita",
             "custo",
-            "n_evidencia",
             "cdf",
+            "evidencia",
         ]
 
         labels = {
@@ -65,15 +65,15 @@ class SaidaForm(forms.ModelForm):
             "id_cluster": "Cluster",
             "id_tp_residuos": "Tipo de Resíduo",
             "classe_residuo": "Classe",
-            "valor": "Valor",
+            "quantidade": "Quantidade",
             "unidade_medida": "Unidade de Medida",
             "id_fornecedor_destinacao": "Fornecedor Destinação",
             "id_destinacao": "Destinação",
             "id_fornecedor_transporte": "Fornecedor Transporte",
             "receita": "Receita",
             "custo": "Custo",
-            "n_evidencia": "Nº Evidência",
             "cdf": "CDF",
+            "evidencia": "Evidência",
         }
 
         widgets = {
@@ -93,8 +93,8 @@ class SaidaForm(forms.ModelForm):
             "id_tp_residuos": forms.Select(
                 attrs={"class": "form-select", "placeholder": "Tipo Resíduo"}
             ),
-            "valor": forms.NumberInput(
-                attrs={"class": "form-control", "placeholder": "Localidade"},
+            "quantidade": forms.NumberInput(
+                attrs={"class": "form-control"},
             ),
             "id_fornecedor_destinacao": forms.Select(
                 attrs={"class": "form-select", "placeholder": "Fornecedor Destinação"}
@@ -111,10 +111,10 @@ class SaidaForm(forms.ModelForm):
             "custo": forms.NumberInput(
                 attrs={"class": "form-control", "placeholder": "Custo"},
             ),
-            "n_evidencia": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Nº Evidência"},
+            "cdf": forms.FileInput(
+                attrs={"class": "form-control"},
             ),
-            "cdf": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "CDF"},
+            "evidencia": forms.FileInput(
+                attrs={"class": "form-control"},
             ),
         }

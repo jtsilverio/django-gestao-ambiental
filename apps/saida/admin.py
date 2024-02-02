@@ -10,10 +10,10 @@ class SaidaAdmin(admin.ModelAdmin):
         "id_cluster",
         "id_destinacao",
         "data",
-        "valor",
+        "quantidade",
         "receita",
         "custo",
-        "n_evidencia",
+        "evidencia",
         "cdf",
     ]
     list_filter = [

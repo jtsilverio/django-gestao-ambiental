@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 strftime('%m', data) AS mes,
                 l.nome  AS cluster,
                 tp.nome  AS tp_residuos,
-                peso AS peso,
+                quantidade AS quantidade,
                 0 AS receita,
                 0 AS custo
             FROM entrada e
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 strftime('%m', data) AS mes,
                 l.nome  AS cluster,
                 tp.nome  AS tp_residuos,
-                peso AS peso,
+                quantidade AS quantidade,
                 receita AS receita,
                 custo AS custo
             FROM saida s

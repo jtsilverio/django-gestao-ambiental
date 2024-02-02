@@ -3,6 +3,7 @@
 
 apps/cidades/generate_fixtures/cidades_ibge.json
 .vscode
+media/
 
 ### Django ###
 *.log

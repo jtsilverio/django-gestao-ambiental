@@ -155,6 +155,9 @@ DATE_INPUT_FORMATS = ("%d/%m/%Y", "%Y-%m-%d")
 
 # STATICFILES CONFIGURATION ROUTING
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+MEDIA_URL = "/media/"
+MEDIA_ROOT = path.join(BASE_DIR, "media")
+
 STATIC_URL = "static/"
 STATICFILES_DIRS = [path.join(BASE_DIR, "gestao_ambiental/static")]
 STATIC_ROOT = path.join(BASE_DIR, "staticfiles")
@@ -163,6 +166,10 @@ STATIC_ROOT = path.join(BASE_DIR, "staticfiles")
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "LOCATION": MEDIA_ROOT,
     },
 }
 
