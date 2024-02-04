@@ -6,21 +6,19 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN mkdir -p /code
-
 WORKDIR /code
-COPY db.sqlite3 /code/db.sqlite3
+
+RUN apt-get update && apt-get install make
 
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
-    pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt --no-deps && \
-    rm -rf /root/.cache/
-COPY . /code
+   pip install --upgrade pip && \
+   pip install -r /tmp/requirements.txt --no-deps && \
+   rm -rf /root/.cache/
 
+COPY . /code
 RUN python manage.py collectstatic --noinput
-RUN python manage.py makemigrations
-RUN python manage.py migrate
-RUN python manage.py loaddata initial_data
+RUN make django-secret-key
 
 EXPOSE 8000
 
