@@ -4,48 +4,51 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-    dependencies = []
+    dependencies = [
+        ("entrada", "0001_initial"),
+        ("saida", "0001_initial"),
+    ]
 
     operations = [
         migrations.RunSQL(
             sql="""
             CREATE VIEW resumo_mensal_residuos AS
-            SELECT CAST(ROW_NUMBER() OVER () AS INTEGER) AS id, *
+            SELECT ROW_NUMBER() OVER () AS id, *
             FROM (
-            SELECT
-                'entrada' AS tipo,
-                strftime('%Y', data) AS ano,
-                strftime('%m', data) AS mes,
-                l.nome  AS cluster,
-                tp.nome  AS tp_residuos,
-                quantidade AS quantidade,
-                0 AS receita,
-                0 AS custo
-            FROM entrada e
-            JOIN cluster l
-                ON e.id_cluster = l.id
-            JOIN tipo_residuos tp
-                ON e.id_tp_residuos  = tp.id
-            GROUP BY ano, mes, cluster, tp_residuos
+                SELECT
+                    'entrada' AS tipo,
+                    EXTRACT(YEAR FROM data) AS ano,
+                    EXTRACT(MONTH FROM data) AS mes,
+                    l.nome  AS cluster,
+                    tp.nome  AS tp_residuos,
+                    SUM(quantidade) AS quantidade,
+                    0 AS receita,
+                    0 AS custo
+                FROM entrada e
+                JOIN cluster l
+                    ON e.id_cluster = l.id
+                JOIN tipo_residuos tp
+                    ON e.id_tp_residuos  = tp.id
+                GROUP BY ano, mes, cluster, tp_residuos
 
-            UNION ALL
+                UNION ALL
 
-            SELECT
-                'saida' AS tipo,
-                strftime('%Y', data) AS ano,
-                strftime('%m', data) AS mes,
-                l.nome  AS cluster,
-                tp.nome  AS tp_residuos,
-                quantidade AS quantidade,
-                receita AS receita,
-                custo AS custo
-            FROM saida s
-            JOIN cluster l
-                ON s.id_cluster = l.id
-            JOIN tipo_residuos tp
-                ON s.id_tp_residuos  = tp.id
-            GROUP BY ano, mes, cluster, tp_residuos
-            )
+                SELECT
+                    'saida' AS tipo,
+                    EXTRACT(YEAR FROM data) AS ano,
+                    EXTRACT(MONTH FROM data) AS mes,
+                    l.nome  AS cluster,
+                    tp.nome  AS tp_residuos,
+                    SUM(quantidade) AS quantidade,
+                    SUM(receita) AS receita,
+                    SUM(custo) AS custo
+                FROM saida s
+                JOIN cluster l
+                    ON s.id_cluster = l.id
+                JOIN tipo_residuos tp
+                    ON s.id_tp_residuos  = tp.id
+                GROUP BY ano, mes, cluster, tp_residuos
+            ) AS resumo_mensal_residuos;
             """,
             reverse_sql="DROP VIEW resumo_mensal_residuos;",
         )

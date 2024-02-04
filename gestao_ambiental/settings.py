@@ -8,12 +8,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from os import path
 from pathlib import Path
 
 import environ
 from django.contrib.messages import constants as messages
 from django.core.management.utils import get_random_secret_key
+
+
+def get_db_config(environ_var):
+    """Get Database configuration."""
+    options = env.db(var=environ_var, default="sqlite:///db.sqlite3")
+    if options.get("ENGINE") != "django.db.backends.sqlite3":
+        return options
+
+    # This will allow use a relative to the project root DB path
+    # for SQLite like 'sqlite:///db.sqlite3'
+    if not options["NAME"] == ":memory:" and not os.path.isabs(options["NAME"]):
+        options.update({"NAME": os.path.join(BASE_DIR, options["NAME"])})
+
+    return options
+
 
 env = environ.Env(
     # set casting, default value
@@ -118,12 +134,7 @@ WSGI_APPLICATION = "gestao_ambiental.wsgi.application"
 #     # read os.environ['DATABASE_URL']
 #     'default': env.db()  # <-- Updated!
 # }
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+DATABASES = {"default": get_db_config("DATABASE_URL")}
 
 
 # Password validation

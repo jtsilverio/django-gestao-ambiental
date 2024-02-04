@@ -35,7 +35,7 @@ install-build:
 	$(PYTHON_INTERPRETER) -m pip install build
 
 
-requirements: install-pip-tools install-build
+compile_requirements: install-pip-tools install-build
 	pip-compile --no-emit-index-url \
 				--verbose \
 				--generate-hashes \
@@ -52,7 +52,7 @@ requirements: install-pip-tools install-build
 		pyproject.toml
 
 
-install_requirements: requirements
+requirements: compile_requirements
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
@@ -66,8 +66,8 @@ django-secret-key:
 	$(PYTHON_INTERPRETER) -c 'from django.core.management.utils import get_random_secret_key; print("SECRET_KEY=" + get_random_secret_key())' >> .env
 
 
-django-env-vars: django-secret-key
-	echo "DEBUG=False" >> .env
+env-vars: django-secret-key
+	echo "DEBUG=True" >> .env
 
 
 .PHONY: runserver
