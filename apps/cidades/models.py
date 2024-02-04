@@ -4,7 +4,7 @@ from apps.cidades.estados_brasileiros import ESTADOS_BRASILEIROS
 
 
 class Cidades(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=60)
     estado = models.CharField(max_length=2, choices=ESTADOS_BRASILEIROS)
 

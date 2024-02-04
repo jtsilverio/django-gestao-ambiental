@@ -3,8 +3,7 @@ from django.db import models
 
 class TipoResiduos(models.Model):
     UNIDADES_MEDIDA_CHOICES = [
-        ("Kg", "Kilograma (Kg)"),
-        ("t", "Tonelada (t)"),
+        ("kg", "Kilograma (Kg)"),
         ("m", "Metro (m)"),
         ("m²", "Metro Quadrado (m²)"),
         ("m³", "Metro Cúbico (m³)"),
@@ -19,12 +18,12 @@ class TipoResiduos(models.Model):
     ]
 
     id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=20, null=False, blank=False)
+    nome = models.CharField(max_length=35, null=False, blank=False)
     classe = models.CharField(
         max_length=10, choices=CLASSE_CHOICES, null=False, blank=False
     )
     unidade_medida = models.CharField(
-        max_length=2, choices=UNIDADES_MEDIDA_CHOICES, null=False, blank=False
+        max_length=3, choices=UNIDADES_MEDIDA_CHOICES, null=False, blank=False
     )
 
     def __str__(self):
