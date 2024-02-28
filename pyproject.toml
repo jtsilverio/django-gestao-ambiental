@@ -28,3 +28,6 @@ version = { attr = "gestao_ambiental.version.__version__" }
 
 [tool.setuptools]
 py-modules = []
+
+[tool.ruff.format]
+exclude = ["*.pyi"]

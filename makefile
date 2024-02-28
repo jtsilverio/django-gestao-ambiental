@@ -35,7 +35,10 @@ install-build:
 	$(PYTHON_INTERPRETER) -m pip install build
 
 
-compile_requirements: install-pip-tools install-build
+pip-sync:
+	pip-sync requirements.txt requirements-dev.txt
+
+pip-compile: install-pip-tools install-build
 	pip-compile --no-emit-index-url \
 				--verbose \
 				--generate-hashes \
@@ -43,8 +46,8 @@ compile_requirements: install-pip-tools install-build
 				--strip-extras \
 				pyproject.toml
 
-	echo "--constraint $(PROJECT_DIR)/requirements.txt" | \
 	pip-compile \
+		-c requirements.txt \
 		--verbose \
 		--generate-hashes \
 		--output-file requirements-dev.txt \
@@ -52,11 +55,8 @@ compile_requirements: install-pip-tools install-build
 		pyproject.toml
 
 
-requirements: compile_requirements
-	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt &&\
-	pre-commit install
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-
+requirements: pip-compile pip-sync
+	echo "Requirements installed"
 
 scss:
 	sass gestao_ambiental/scss/volt.scss gestao_ambiental/static/css/volt.css
@@ -65,10 +65,12 @@ scss:
 django-secret-key:
 	$(PYTHON_INTERPRETER) -c 'from django.core.management.utils import get_random_secret_key; print("SECRET_KEY=" + get_random_secret_key())' >> .env
 
-
 env-vars: django-secret-key
 	echo "DEBUG=True" >> .env
 
+.PHONY: rundb
+rundb:
+	fly proxy 5432 -a pg-django-gestao-ambiental
 
 .PHONY: runserver
 runserver:
@@ -81,3 +83,6 @@ collectstatic:
 newapp:
 	mkdir apps/$(name)
 	$(PYTHON_INTERPRETER) manage.py startapp $(name) apps/$(name)
+
+docker-build:
+	docker build -t django-gestao-ambiental .

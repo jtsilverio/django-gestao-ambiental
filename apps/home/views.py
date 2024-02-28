@@ -1,4 +1,3 @@
-from datetime import datetime
 from itertools import groupby
 from operator import itemgetter
 
@@ -9,6 +8,7 @@ from apps.home.models import ResumoMensalResiduos
 
 
 def get_mothly_data(year: int):
+    pass
     monthly_data = list(ResumoMensalResiduos.objects.filter(ano=year).values())
     return monthly_data
 
@@ -123,14 +123,14 @@ def monthly_lineplot(monthly_data):
 
 
 def home(request):
-    current_date = datetime.now()
-    monthly_data = get_mothly_data(current_date.year)
+    # current_date = datetime.now()
+    # monthly_data = get_mothly_data(current_date.year)
     # dashboard_stats = get_dashboard_stats(monthly_data)
-    plot = monthly_lineplot(monthly_data)
+    # plot = monthly_lineplot(monthly_data)
 
     context = {
         # "stats_dict": dashboard_stats,
-        "plot": plot,
+        # "plot": plot,
     }
 
     return render(request, "home/home.html", context)
